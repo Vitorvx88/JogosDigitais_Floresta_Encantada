@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
+    [Header("Jogador")]
     public float ForcaPulo;
     public float Velocidade;
     private Rigidbody2D rig;
@@ -22,6 +22,14 @@ public class Player : MonoBehaviour
     private CharacterController ColliderPlayer;
     private string cenaAtual;
     private bool agachado;
+
+    [Header("Vidas")]
+    public GameObject coracao1;
+    public GameObject coracao2;
+    public GameObject coracao3;
+    private int vidas;
+    private float tempo;
+    private bool isDano;
 
 
 
@@ -42,7 +50,7 @@ public class Player : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
        // Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -55,19 +63,16 @@ public class Player : MonoBehaviour
             Correr();
             Abaixar();
             SalvarPosicao();
+            //dano();
+            tempo += Time.deltaTime;
+          
         }
-
-     
 
         //pause
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseGame();
         }
-        
-      
-
-
     }
     void Mover()
     {
@@ -97,7 +102,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.X))
         {
-            ForcaPulo =8;
+            ForcaPulo =9;
             anim.SetBool("Pulando", false);
         }
         if (Input.GetKey(KeyCode.X)==false)
@@ -139,8 +144,6 @@ public class Player : MonoBehaviour
      }
     void Abaixar()
     {
-     
-
         Vector3 novaPosicao = transform.position;
         if (!emPulo)
         {
@@ -150,11 +153,9 @@ public class Player : MonoBehaviour
                 transform.position = novaPosicao;
                 anim.SetBool("Abaixar", true);
                 agachado = false;
-
                 // Transform pf = GameObject.Find("Jogador").transform;
                 //  Transform c9 = pf.Find("Jogador");
                 //c9.SetSiblingIndex(2);
-
                 /* if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= -4.39112f)
                  {
                      novaPosicao.y = -0.75f;
@@ -189,7 +190,6 @@ public class Player : MonoBehaviour
                      }
                  }*/
                 //Velocidade = 2;
-
             }
             if (Input.GetKey(KeyCode.X) == false)
             {
@@ -200,25 +200,21 @@ public class Player : MonoBehaviour
     }
     void pauseGame()
     {
-     
-
         if (pause)
         {
-            pausePainel.SetActive(false);
-            Time.timeScale = 1f;
-            pause = false;
-          //  Cursor.lockState = CursorLockMode.Locked;
+           pausePainel.SetActive(false);
+           Time.timeScale = 1f;
+           pause = false;
+           //Cursor.lockState = CursorLockMode.Locked;
            Cursor.visible = false;
         }
         else
         {
-       
            pausePainel.SetActive(true);
            Time.timeScale = 0f;
            pause = true;
-          // Cursor.lockState = CursorLockMode.Locked;
+           //Cursor.lockState = CursorLockMode.Locked;
            Cursor.visible = true;
-
         }
     }
     void Menu()
@@ -240,21 +236,73 @@ public class Player : MonoBehaviour
             anim.SetBool("Pulando", false);
         }
     }
-    void OnCollisionExit2D(Collision2D collision)
+   void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 8)
         {
             emPulo = true;
         }
+        if (collision.gameObject.tag == "Pass")
+        {
+           
+            if (tempo >=0.5) {
+                vidas++;
+                tempo = 0f;
+                anim.SetBool("Dano", true);
+                if (vidas == 1)
+                {
+                    coracao1.SetActive(false);
+                    isDano = true;
+                    dano();
+                   
+                }
+                if (vidas == 2)
+                {
+                    coracao2.SetActive(false);
+                    isDano = true;
+                    dano();
+
+                }
+                if (vidas == 3)
+                {
+                    coracao3.SetActive(false);
+                    ControladorDoGame.istancia.AtivarGameOver();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    isDano = false;
+                    dano();
+
+                }
+
+                //  anim.SetBool("Dano", false);
+            }
+            
+
+        }
+       
+       
     }
 
-   void SalvarPosicao()
+    void SalvarPosicao()
     {
         PlayerPrefs.SetFloat(cenaAtual + "X", transform.position.x);
     }
     public void VoltarMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+    public void dano()
+    {
+        if (isDano)
+        {
+            anim.SetBool("Dano", true);
+        }
+        else
+        {
+            anim.SetBool("Dano", false);
+        }
     }
 
 }
