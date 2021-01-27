@@ -100,21 +100,12 @@ public class Player : MonoBehaviour
 
     void Pular()
     {
-        if (Input.GetKey(KeyCode.X))
-        {
-            ForcaPulo =9;
-            anim.SetBool("Pulando", false);
-        }
-        if (Input.GetKey(KeyCode.X)==false)
-        {
-            ForcaPulo = aux2;
-        }
-
-        if (Input.GetButtonDown("Jump") && agachado)
+        
+        if (Input.GetButtonDown("Jump"))
         {
             if (!emPulo)
             {
-                rig.AddForce(new Vector2(0f, ForcaPulo), ForceMode2D.Impulse);
+                rig.AddForce(new Vector2(0f, ForcaPulo*1.2f), ForceMode2D.Impulse);
                 puloDuplo = true;
                 anim.SetBool("Pulando", true);
             }
@@ -122,7 +113,7 @@ public class Player : MonoBehaviour
             {
                 if (puloDuplo)
                 {
-                    rig.AddForce(new Vector2(0f, (ForcaPulo-2) * 1.2f), ForceMode2D.Impulse);
+                    rig.AddForce(new Vector2(0f, (ForcaPulo-2) * 0.5f), ForceMode2D.Impulse);
                     puloDuplo = false;
                 }
             }
