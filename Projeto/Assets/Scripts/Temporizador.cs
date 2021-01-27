@@ -9,6 +9,7 @@ public class Temporizador : MonoBehaviour
     private float cronometro=0f; // tempo 
     public static bool stopTime;
     private int tempoMaximo=500;
+    public GameObject pausePainel;
 
     void Start()
     {
@@ -28,7 +29,11 @@ public class Temporizador : MonoBehaviour
         }
         else
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            stopTime = true;
+            ControladorDoGame.istancia.AtivarGameOver();
+            pausePainel.SetActive(true);
+            Time.timeScale = 0f;
+         
         }
     }
 }

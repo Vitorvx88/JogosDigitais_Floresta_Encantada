@@ -141,5 +141,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e86838b9f48114291a7f4ac228b751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelPass: 2
+  VelPass: 100
   moverPass: 3
