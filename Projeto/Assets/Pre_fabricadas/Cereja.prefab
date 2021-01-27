@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coletar: {fileID: 423527426099316436}
-  pontuacao: 5
+  pontuacao: 0
 --- !u!1001 &7240163367442980481
 PrefabInstance:
   m_ObjectHideFlags: 0

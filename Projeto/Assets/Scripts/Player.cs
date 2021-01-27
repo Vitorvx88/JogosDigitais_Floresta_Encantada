@@ -234,7 +234,7 @@ public class Player : MonoBehaviour
         {
             emPulo = true;
         }
-        if (collision.gameObject.tag == "Pass")
+        if (collision.gameObject.tag == "Pass" || collision.gameObject.tag == "Sap")
         {
 
             if (tempo >= 1f)
@@ -263,10 +263,8 @@ public class Player : MonoBehaviour
                     Destroy(gameObject);
                 }
 
-
-                //  anim.SetBool("Dano", false);
             }
-
+            
 
         }
 
@@ -313,6 +311,7 @@ public class Player : MonoBehaviour
     void SalvarPosicao()
     {
         PlayerPrefs.SetFloat(cenaAtual + "X", transform.position.x);
+        //PlayerPrefs.SetFloat(cenaAtual + "Y", transform.position.y);
     }
     public void VoltarMenu()
     {
