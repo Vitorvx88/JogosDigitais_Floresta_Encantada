@@ -27,4 +27,9 @@ public class ControladorDoGame : MonoBehaviour
     {
         SceneManager.LoadScene(cene);
     }
+    public void att(int pontos)
+    {
+        this.pontuacaoTotal = pontos;
+        scoreText.text = pontuacaoTotal.ToString();
+    }
 }
