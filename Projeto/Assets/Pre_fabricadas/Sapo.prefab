@@ -73,7 +73,7 @@ MonoBehaviour:
   sapo: {fileID: 8416164229639537842}
   BoxCollider2D: {fileID: 0}
   pass: 0
-  sap: 1
+  sap: 20
 --- !u!1 &8416164229639537842
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class Temporizador : MonoBehaviour
     public Text cronometro_txt;
     private float cronometro=0f; // tempo 
     public static bool stopTime;
-    private int tempoMaximo=500;
+    private int tempoMaximo=120;
     public GameObject pausePainel;
 
     void Start()
@@ -35,5 +35,10 @@ public class Temporizador : MonoBehaviour
             Time.timeScale = 0f;
          
         }
+        
+    }
+    public static void Stop()
+    {
+        stopTime = true;
     }
 }

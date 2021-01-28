@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae30d0e3f8000bd4fb4ade4781cff134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cena: Floresta
+  cena: NumSeiSeFunciona
 --- !u!4 &956778380
 Transform:
   m_ObjectHideFlags: 0

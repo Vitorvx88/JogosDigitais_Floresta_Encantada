@@ -72,7 +72,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sapo: {fileID: 11524725038257093}
   BoxCollider2D: {fileID: 0}
-  pass: 10
+  pass: 30
   sap: 0
 --- !u!1 &11524725038257093
 GameObject:
@@ -216,5 +216,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e86838b9f48114291a7f4ac228b751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelPass: 5
+  VelPass: 100
   moverPass: 3

@@ -260,6 +260,7 @@ public class Player : MonoBehaviour
                 {
                     coracao3.SetActive(false);
                     ControladorDoGame.istancia.AtivarGameOver();
+                    Temporizador.Stop();
                     Destroy(gameObject);
                 }
 

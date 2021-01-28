@@ -12,12 +12,13 @@ public class MonsterKIll : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.tag == "Sap") {
+            if (collision.gameObject.tag == "Sap")
+            {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
                 ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal + 20;
                 ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
             }
-            if(collision.gameObject.tag == "Pass")
+            if (collision.gameObject.tag == "Pass")
             {
                 collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 7, ForceMode2D.Impulse);
                 ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal + 40;
