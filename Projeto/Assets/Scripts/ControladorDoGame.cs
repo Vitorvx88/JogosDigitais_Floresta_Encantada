@@ -7,17 +7,24 @@ using UnityEngine.SceneManagement;
 public class ControladorDoGame : MonoBehaviour
 {
     public int pontuacaoTotal;
+    public int pontuacaoEstrela;
     public static ControladorDoGame istancia;
     public Text scoreText;
+    public Text scoreEstrela;
     public GameObject GameOver;
     // Start is called before the first frame update 
     void Start()
     {
-        istancia = this;
+    pontuacaoEstrela = 10;
+    istancia = this;
     }
     public void atualizarPoints()
     {
         scoreText.text = pontuacaoTotal.ToString();
+    }
+    public void atualizarEstrelas()
+    {
+        scoreEstrela.text = pontuacaoEstrela.ToString();
     }
     public void AtivarGameOver()
     {
@@ -31,5 +38,14 @@ public class ControladorDoGame : MonoBehaviour
     {
         this.pontuacaoTotal = pontos;
         scoreText.text = pontuacaoTotal.ToString();
+
+
+    }
+    public void attEstrela(int pontos)
+    {
+        this.pontuacaoEstrela = pontos;
+        scoreEstrela.text = pontuacaoEstrela.ToString();
+
+
     }
 }

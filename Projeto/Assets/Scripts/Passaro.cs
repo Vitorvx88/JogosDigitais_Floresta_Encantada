@@ -30,6 +30,19 @@ public class Passaro : MonoBehaviour
             tempo = 0f;   
             transform.localScale = new Vector2(transform.localScale.x * -1f, transform.localScale.y);
         }
+
+
+    }
+    public void Dead()
+    {
+        Destroy(gameObject, 0.50f);
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Dead")
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

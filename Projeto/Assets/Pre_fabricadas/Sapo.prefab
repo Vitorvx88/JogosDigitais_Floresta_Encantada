@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 368004380}
   - component: {fileID: 368004379}
   - component: {fileID: 368004378}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tesssst
   m_TagString: BoxKill
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a8395990f2fc5488a362da44996e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sapo: {fileID: 8416164229639537842}
+  Monstro: {fileID: 8416164229639537842}
   BoxCollider2D: {fileID: 0}
   pass: 0
   sap: 20
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8416164229639537841}
   - component: {fileID: 7884960994873913212}
   - component: {fileID: 1563933429}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sapo
   m_TagString: Sap
   m_Icon: {fileID: 0}

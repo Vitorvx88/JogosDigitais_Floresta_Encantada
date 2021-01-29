@@ -32,7 +32,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.07, y: 0.49, z: 0}
   m_LocalScale: {x: 4.482072, y: 4.843835, z: 0.9359486}
-  m_Children: []
+  m_Children:
+  - {fileID: 5380567096836773531}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0062589757, y: -0.042982228}
+  m_Offset: {x: 0.0062589794, y: -0.030894406}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20248988, y: 0.21603553}
+  m_Size: {x: 0.20248988, y: 0.24042897}
   m_EdgeRadius: 0
 --- !u!50 &1770183441767299930
 Rigidbody2D:
@@ -147,10 +148,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForcaPulo: 11
   Velocidade: 4
-  correr: 6
+  correr: 8
   coracao1: {fileID: 0}
   coracao2: {fileID: 0}
   coracao3: {fileID: 0}
+  Tiro: {fileID: 5392670337839441076, guid: c3fa3cb8307dcf94e96677edc45a6c78, type: 3}
+  PivorDoTiro: {fileID: 5380567096836773531}
+  velocidade: 4
+  ProxTiro: 1
   pausePainel: {fileID: 0}
   cena: Menu
 --- !u!95 &1770183441767299928
@@ -187,3 +192,33 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &8009726722837564636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5380567096836773531}
+  m_Layer: 0
+  m_Name: Tiro
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5380567096836773531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8009726722837564636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.072, y: -0.073, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1770183441767299935}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

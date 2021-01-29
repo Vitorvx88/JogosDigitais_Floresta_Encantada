@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     [Header("Jogador")]
+
     public float ForcaPulo;
     public float Velocidade;
     private Rigidbody2D rig;
@@ -34,8 +35,14 @@ public class Player : MonoBehaviour
     private bool Cora1;
     private bool Cora2;
 
-
-
+    [Header("Atirar")]
+    public GameObject Tiro;
+    public Transform PivorDoTiro;
+    public float velocidade;
+    public float ProxTiro;
+    private float PFv;
+   
+    //public float TempoTiro;
 
 
     [Header("Painel e Menu")]
@@ -53,7 +60,7 @@ public class Player : MonoBehaviour
     {
         Cora1 = true;
         Cora2 = true;
-
+        PFv = 2;
 
         Time.timeScale = 1f;
         aux2 = ForcaPulo;
@@ -75,8 +82,24 @@ public class Player : MonoBehaviour
             Correr();
             Abaixar();
             SalvarPosicao();
+            Atirar();
 
+            PFv += Time.deltaTime;
 
+            if (Input.GetKey(KeyCode.Z) && PFv >= ProxTiro)
+            {
+                if (ControladorDoGame.istancia.pontuacaoEstrela>0)
+                {
+                    anim.SetBool("Atirar", true);
+                    PFv = 0f;
+                    GameObject project = Instantiate(Tiro, PivorDoTiro.position, PivorDoTiro.rotation);
+                    ControladorDoGame.istancia.pontuacaoEstrela = ControladorDoGame.istancia.pontuacaoEstrela - 1;
+                    ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
+                }
+                    anim.SetBool("Atirar", false);
+            }
+            
+            
             tempo += Time.deltaTime;
             if (isDano == true)
             {
@@ -123,6 +146,11 @@ public class Player : MonoBehaviour
             anim.SetBool("Andando", false);
         }
 
+    }
+    void Atirar()
+    {
+
+        
     }
 
     void Pular()

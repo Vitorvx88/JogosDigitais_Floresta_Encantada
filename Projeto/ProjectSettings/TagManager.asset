@@ -9,6 +9,9 @@ TagManager:
   - BoxKill
   - Sap
   - Floresta
+  - Estrela
+  - Dead
+  - Chao
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - 
   - Chao
   - Mato
-  - 
+  - Inimigo
   - 
   - 
   - 

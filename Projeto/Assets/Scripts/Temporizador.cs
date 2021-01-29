@@ -12,6 +12,8 @@ public class Temporizador : MonoBehaviour
     private float maximoSegundos = 60f;
     public static bool stopTime;
     private int tempoMaximo=10;
+    private string aux1;
+
     public GameObject pausePainel;
 
     void Start()
@@ -27,7 +29,16 @@ public class Temporizador : MonoBehaviour
         if (stopTime==false)
         {
             segundos += Time.deltaTime;
-            segundos_txt.text = segundos.ToString("F0");
+            if (segundos < 9.5)
+            {
+                aux1 = "0";
+                segundos_txt.text = aux1 +segundos.ToString("F0");
+            }
+            else
+            {
+                segundos_txt.text = segundos.ToString("F0");
+            }
+            
             if (segundos>=maximoSegundos)
             {
                 minutos++;
