@@ -28,7 +28,9 @@ public class ControladorDoGame : MonoBehaviour
     }
     public void AtivarGameOver()
     {
+
         GameOver.SetActive(true);
+        Cursor.visible = true;
     }
     public void reniciarCena(string cene)
     {

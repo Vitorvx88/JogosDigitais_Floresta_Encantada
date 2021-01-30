@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        Cursor.visible = false;
         cronometro = 0f;
         isDano = false;
         cenaAtual = SceneManager.GetActiveScene().name;
@@ -118,19 +119,25 @@ public class Player : MonoBehaviour
             }
             if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 214.2959 && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 218.6947f)
             {
-                if (Input.GetKey(KeyCode.L)){
+                if (Input.GetKey(KeyCode.L))
+                {
                     Loja.SetActive(true);
-                    }
-            
+                    Cursor.visible = true;
+                }
+
             }
             else
+            {
                 Loja.SetActive(false);
+                Cursor.visible = false;
+            }
 
             if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 214.2959 && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 218.6947f)
             {
                 if (Input.GetKey(KeyCode.K))
                 {
                     Loja.SetActive(false);
+                    Cursor.visible = false;
                 }
             }
 

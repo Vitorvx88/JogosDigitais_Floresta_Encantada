@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
     public float velocidade = 0.15f;
     private Transform pivor;
     public bool maxMin;
-    private float xMin= 2.80f;
+    private float xMin= 0.2f;
     private float yMin= 0.80f;
     private float xMax= 423.74f;
     private float yMax= 43.59f;

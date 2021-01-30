@@ -24,7 +24,7 @@ public class Menu : MonoBehaviour
     }
     public void sairJogo()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+       // UnityEditor.EditorApplication.isPlaying = false;
+       Application.Quit();
     }
 }
