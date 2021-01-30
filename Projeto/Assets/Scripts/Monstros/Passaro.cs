@@ -13,9 +13,21 @@ public class Passaro : MonoBehaviour
     private bool istroca;
     public bool inicial;
     private Animator anim;
+    public GameObject Player;
+    public int Pontos;
+
+    public Transform DireitaMonster;
+    public Transform EsquerdaMonster;
+    public Transform KIll;
+    public LayerMask layer;
+    private bool aux;
+    private bool colisao;
+
+
 
     private void Start()
     {
+        aux = false;
         if (inicial)
         {
             transform.localScale = new Vector2(4.4f, transform.localScale.y);
@@ -57,22 +69,49 @@ public class Passaro : MonoBehaviour
             else
                 transform.localScale = new Vector2(transform.localScale.x * -1f, transform.localScale.y);
         }
+        colisao = Physics2D.Linecast(DireitaMonster.position, EsquerdaMonster.position, layer);
+        if (colisao)
+        {
+            aux = true;
+            //Debug.Log("dano");
+
+            Player.GetComponent<Player>().TomarDano();
+
+        }
+        else
+            aux = false;
 
 
     }
     public void Dead()
     {
+        VelPass = 0;
+        ControladorDoGame.istancia.ReceberPontos(Pontos);
         anim.SetTrigger("Pass");
-        Destroy(gameObject, 0.40f);
+        Destroy(gameObject, 0.34f);
     }
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Dead")
-        {
-            anim.SetTrigger("Pass");
 
-            Destroy(gameObject, 0.25f);
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Dead")
+        {
+            Dead();
         }
+        if (col.gameObject.tag == "Player" && aux == false)
+        {
+            float height = col.contacts[0].point.y - KIll.position.y;
+
+            //Debug.Log(height);
+            if (height >= 0)
+            {
+               // Debug.Log("Morte");
+                col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
+                Dead();
+            }
+        }
+        else
+            col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12f, ForceMode2D.Impulse);
+
     }
 
 }

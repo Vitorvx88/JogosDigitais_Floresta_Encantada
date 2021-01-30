@@ -24,22 +24,8 @@ public class Atirar : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Pass")
+        if (collision.gameObject.tag == "Pass"|| collision.gameObject.tag == "Rato"|| collision.gameObject.tag == "Sap")
         {
-            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal + pass;
-            ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
-            Destroy(gameObject);
-        }
-        if(collision.gameObject.tag == "Sap")
-        {
-            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal + sap;
-            ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
-            Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "Rato")
-        {
-            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal + rato;
-            ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
             Destroy(gameObject);
         }
 

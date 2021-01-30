@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3475285588638438587
+--- !u!1 &133868499
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,103 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9080067046548897630}
-  - component: {fileID: 4293972596073818966}
-  - component: {fileID: 671304212461994468}
+  - component: {fileID: 133868500}
   m_Layer: 0
-  m_Name: HitKill
-  m_TagString: BoxKill
+  m_Name: Direita
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9080067046548897630
+--- !u!4 &133868500
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475285588638438587}
+  m_GameObject: {fileID: 133868499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.007, z: 0}
+  m_LocalPosition: {x: -0.214, y: 0.003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4253093487193209942}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &4293972596073818966
+--- !u!1 &1935092789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935092790}
+  m_Layer: 0
+  m_Name: Esquerda
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1935092790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935092789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.213, y: -0.099, z: 0}
+  m_LocalScale: {x: 0.7625, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253093487193209942}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1940090356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1940090357}
+  - component: {fileID: 1940090358}
+  m_Layer: 0
+  m_Name: Kill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1940090357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940090356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.047, y: 0.323, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4253093487193209942}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1940090358
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475285588638438587}
-  m_Enabled: 1
+  m_GameObject: {fileID: 1940090356}
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026865492, y: 0.025084663}
+  m_Offset: {x: -0.034620926, y: -0.0067039356}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -56,25 +115,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14502463, y: 0.008812062}
+  m_Size: {x: 0.054742817, y: 0.06544837}
   m_EdgeRadius: 0
---- !u!114 &671304212461994468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3475285588638438587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a8395990f2fc5488a362da44996e26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Monstro: {fileID: 5951145942917840540}
-  BoxCollider2D: {fileID: 0}
-  pass: 0
-  sap: 0
-  rato: 10
 --- !u!1 &5951145942917840540
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +129,6 @@ GameObject:
   - component: {fileID: 4855307422780844430}
   - component: {fileID: 7568784883595605947}
   - component: {fileID: -479404961143585870}
-  - component: {fileID: 2619657817615529599}
   - component: {fileID: 4415513693375986264}
   m_Layer: 0
   m_Name: Rato
@@ -107,7 +148,9 @@ Transform:
   m_LocalPosition: {x: -0.45, y: 0.08, z: 0}
   m_LocalScale: {x: 3.9680843, y: 3.242675, z: 1}
   m_Children:
-  - {fileID: 9080067046548897630}
+  - {fileID: 133868500}
+  - {fileID: 1935092790}
+  - {fileID: 1940090357}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -193,7 +236,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02876896, y: -0.060364895}
+  m_Offset: {x: -0.028768957, y: -0.05834361}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -204,25 +247,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.28055888, y: 0.13244139}
+  m_Size: {x: 0.28055888, y: 0.12839882}
   m_EdgeRadius: 0
---- !u!114 &2619657817615529599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5951145942917840540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a8395990f2fc5488a362da44996e26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Monstro: {fileID: 0}
-  BoxCollider2D: {fileID: 0}
-  pass: 0
-  sap: 0
-  rato: 0
 --- !u!114 &4415513693375986264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,8 +261,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1cfbb40e92d37345bb23bae6d636c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VelPass: 8
-  moverPass: 2
+  VelPass: 5
+  moverPass: 1
   Direita: 1
   TrocarRotation: 1
   inicial: 1
+  Player: {fileID: 0}
+  Pontos: 20
+  DireitaMonster: {fileID: 133868500}
+  EsquerdaMonster: {fileID: 1935092790}
+  KIll: {fileID: 1940090357}
+  layer:
+    serializedVersion: 2
+    m_Bits: 4096

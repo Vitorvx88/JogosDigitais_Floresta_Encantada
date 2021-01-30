@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1770183441767299935}
   - component: {fileID: 1770183441767299932}
-  - component: {fileID: 1770183441767299933}
   - component: {fileID: 1770183441767299930}
   - component: {fileID: 1770183441767299931}
   - component: {fileID: 1770183441767299928}
   - component: {fileID: 1770183441767299929}
-  m_Layer: 0
+  - component: {fileID: 12136190}
+  m_Layer: 12
   m_Name: Jogador
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: b6d14bcb8d9dbb349beb9d3619096732, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -87,32 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1770183441767299933
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770183441767299910}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 32bc8743bdf06d042b2136fc224361e7, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0062589794, y: -0.030894406}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.20248988, y: 0.24042897}
-  m_EdgeRadius: 0
 --- !u!50 &1770183441767299930
 Rigidbody2D:
   serializedVersion: 4
@@ -158,6 +132,7 @@ MonoBehaviour:
   ProxTiro: 1
   pausePainel: {fileID: 0}
   cena: Menu
+  Loja: {fileID: 0}
 --- !u!95 &1770183441767299928
 Animator:
   serializedVersion: 3
@@ -192,6 +167,22 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!58 &12136190
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770183441767299910}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0052894354, y: -0.031463046}
+  serializedVersion: 2
+  m_Radius: 0.1054639
 --- !u!1 &8009726722837564636
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5380567096836773531}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tiro
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -12,6 +12,8 @@ public class ControladorDoGame : MonoBehaviour
     public Text scoreText;
     public Text scoreEstrela;
     public GameObject GameOver;
+
+    private int Pontos;
     // Start is called before the first frame update 
     void Start()
     {
@@ -49,5 +51,10 @@ public class ControladorDoGame : MonoBehaviour
         scoreEstrela.text = pontuacaoEstrela.ToString();
 
 
+    }
+    public void ReceberPontos(int pontos)
+    {
+        this.pontuacaoTotal += pontos;
+        scoreText.text = pontuacaoTotal.ToString();
     }
 }

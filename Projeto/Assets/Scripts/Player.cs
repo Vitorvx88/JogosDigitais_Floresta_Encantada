@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        Cursor.visible = false;
+       // Cursor.visible = false;
         cronometro = 0f;
         isDano = false;
         cenaAtual = SceneManager.GetActiveScene().name;
@@ -151,21 +151,26 @@ public class Player : MonoBehaviour
 
     void Mover()
     {
-        Vector3 movimento = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movimento * Time.deltaTime * Velocidade;
-        if (Input.GetAxis("Horizontal") > 0f)
+       // Vector3 movimento = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+       // transform.position += movimento * Time.deltaTime * Velocidade;
+
+        float movi = Input.GetAxis("Horizontal");
+        rig.velocity = new Vector2(movi * Velocidade, rig.velocity.y);
+
+
+        if (movi > 0f)
         {
 
             anim.SetBool("Andando", true);
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
-        if (Input.GetAxis("Horizontal") < 0f)
+        if (movi < 0f)
         {
 
             anim.SetBool("Andando", true);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
-        if (Input.GetAxis("Horizontal") == 0f)
+        if (movi == 0f)
         {
 
             anim.SetBool("Andando", false);
@@ -199,6 +204,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && agachado)
         {
+          
             if (!emPulo)
             {
                 rig.AddForce(new Vector2(0f, ForcaPulo * 1.2f), ForceMode2D.Impulse);
@@ -300,10 +306,9 @@ public class Player : MonoBehaviour
         {
             emPulo = true;
         }
-    
-        if (collision.gameObject.tag == "Pass" || collision.gameObject.tag == "Sap" || collision.gameObject.tag == "Rato")
-        {
-
+    }
+    public void TomarDano()
+    {
             if (tempo >= 1f)
             {
                 vidas++;
@@ -332,11 +337,6 @@ public class Player : MonoBehaviour
                 }
 
             }
-            
-
-        }
-
-
     }
     public void ComprarVida()
     {
