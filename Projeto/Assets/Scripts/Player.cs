@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("Jogador")]
 
+    public static Player istancia;
     public float ForcaPulo;
     public float Velocidade;
     private Rigidbody2D rig;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     private CharacterController ColliderPlayer;
     private string cenaAtual;
     private bool agachado;
+    
 
     [Header("Vidas")]
     public GameObject coracao1;
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
         Cora1 = true;
         Cora2 = true;
         PFv = 2;
+        
 
         Time.timeScale = 1f;
         aux2 = ForcaPulo;
@@ -82,12 +85,16 @@ public class Player : MonoBehaviour
             Correr();
             Abaixar();
             SalvarPosicao();
-            Atirar();
+            Morte();
+
+            
+
 
             PFv += Time.deltaTime;
-
-            if (Input.GetKey(KeyCode.Z) && PFv >= ProxTiro)
+            if (Input.GetKey(KeyCode.Z) && PFv >= ProxTiro && agachado)
             {
+                anim.SetBool("Atirar", true);
+                
                 if (ControladorDoGame.istancia.pontuacaoEstrela>0)
                 {
                     anim.SetBool("Atirar", true);
@@ -95,11 +102,14 @@ public class Player : MonoBehaviour
                     GameObject project = Instantiate(Tiro, PivorDoTiro.position, PivorDoTiro.rotation);
                     ControladorDoGame.istancia.pontuacaoEstrela = ControladorDoGame.istancia.pontuacaoEstrela - 1;
                     ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
+                    
                 }
-                    anim.SetBool("Atirar", false);
+                    
             }
-            
-            
+
+            anim.SetBool("Atirar", false);
+
+
             tempo += Time.deltaTime;
             if (isDano == true)
             {
@@ -147,10 +157,18 @@ public class Player : MonoBehaviour
         }
 
     }
-    void Atirar()
+    void Morte()
     {
-
-        
+        if(PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.y) <= -5.943812)
+        {
+            ControladorDoGame.istancia.AtivarGameOver();
+            Temporizador.Stop();
+            
+            coracao2.SetActive(false);
+            coracao1.SetActive(false);
+            coracao3.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 
     void Pular()
@@ -248,6 +266,7 @@ public class Player : MonoBehaviour
 
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == 8)
@@ -262,6 +281,7 @@ public class Player : MonoBehaviour
         {
             emPulo = true;
         }
+    
         if (collision.gameObject.tag == "Pass" || collision.gameObject.tag == "Sap")
         {
 
@@ -340,7 +360,7 @@ public class Player : MonoBehaviour
     void SalvarPosicao()
     {
         PlayerPrefs.SetFloat(cenaAtual + "X", transform.position.x);
-        //PlayerPrefs.SetFloat(cenaAtual + "Y", transform.position.y);
+        PlayerPrefs.SetFloat(cenaAtual + "Y", transform.position.y);
     }
     public void VoltarMenu()
     {

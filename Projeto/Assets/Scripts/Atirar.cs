@@ -18,7 +18,7 @@ public class Atirar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * 13 * Time.deltaTime*1);
+        transform.Translate(Vector2.right * 13 * Time.deltaTime*2);
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -36,7 +36,7 @@ public class Atirar : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player"|| collision.gameObject.tag == "Testando")
         {
             ControladorDoGame.istancia.pontuacaoEstrela += +1;
             ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);

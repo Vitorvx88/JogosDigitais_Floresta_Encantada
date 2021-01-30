@@ -12,6 +12,7 @@ TagManager:
   - Estrela
   - Dead
   - Chao
+  - Testando
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Chao
   - Mato
   - Inimigo
-  - 
+  - GameOver
   - 
   - 
   - 
