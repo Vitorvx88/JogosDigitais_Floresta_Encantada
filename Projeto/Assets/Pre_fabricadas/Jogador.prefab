@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ForcaPulo: 11
-  Velocidade: 4
-  correr: 15
+  Velocidade: 7
+  correr: 9
   coracao1: {fileID: 0}
   coracao2: {fileID: 0}
   coracao3: {fileID: 0}

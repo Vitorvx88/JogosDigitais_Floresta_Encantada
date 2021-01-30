@@ -137,6 +137,7 @@ MonoBehaviour:
   TempoDeVida: 0
   pass: 30
   sap: 20
+  rato: 10
 --- !u!95 &5209538518590662127
 Animator:
   serializedVersion: 3

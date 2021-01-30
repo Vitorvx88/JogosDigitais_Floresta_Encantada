@@ -51,12 +51,16 @@ public class Player : MonoBehaviour
     public GameObject pausePainel;
     public string cena;
 
+    [Header("Loja")]
+    public GameObject Loja;
+
     void Awake()
     {
         cronometro = 0f;
         isDano = false;
         cenaAtual = SceneManager.GetActiveScene().name;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,10 +78,13 @@ public class Player : MonoBehaviour
         //Cursor.visible = false;
 
     }
-
+    void FixedUpdate()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
-    {
+    {   
         if (!pause)
         {
             Mover();
@@ -87,55 +94,56 @@ public class Player : MonoBehaviour
             SalvarPosicao();
             Morte();
 
-            
-
-
+            tempo += Time.deltaTime;
             PFv += Time.deltaTime;
+
+  
             if (Input.GetKey(KeyCode.Z) && PFv >= ProxTiro && agachado)
             {
-                anim.SetBool("Atirar", true);
-                
-                if (ControladorDoGame.istancia.pontuacaoEstrela>0)
+                if (ControladorDoGame.istancia.pontuacaoEstrela > 0)
                 {
                     anim.SetBool("Atirar", true);
-                    PFv = 0f;
-                    GameObject project = Instantiate(Tiro, PivorDoTiro.position, PivorDoTiro.rotation);
-                    ControladorDoGame.istancia.pontuacaoEstrela = ControladorDoGame.istancia.pontuacaoEstrela - 1;
-                    ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
-                    
+                    Atirar();
                 }
-                    
             }
-
-            anim.SetBool("Atirar", false);
-
-
-            tempo += Time.deltaTime;
             if (isDano == true)
             {
                 cronometro += Time.deltaTime;
                 if (cronometro >= 1f)
                 {
                     anim.SetBool("Dano", false);
-
                     isDano = false;
                     cronometro = 0f;
                 }
             }
-        }
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 214.2959 && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 218.6947f)
+            {
+                if (Input.GetKey(KeyCode.L)){
+                    Loja.SetActive(true);
+                    }
+            
+            }
+            else
+                Loja.SetActive(false);
 
-        //pause
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 214.2959 && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 218.6947f)
+            {
+                if (Input.GetKey(KeyCode.K))
+                {
+                    Loja.SetActive(false);
+                }
+            }
+
+            }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-
             pauseGame();
         }
+
     }
+
     void Mover()
     {
-        // float movimento = Input.GetAxis("Horizontal");
-        // rig.velocity = new Vector2(movimento * Velocidade, rig.velocity.y);
-
         Vector3 movimento = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movimento * Time.deltaTime * Velocidade;
         if (Input.GetAxis("Horizontal") > 0f)
@@ -170,7 +178,14 @@ public class Player : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    void Atirar()
+    {
+        PFv = 0f;
+        GameObject project = Instantiate(Tiro, PivorDoTiro.position, PivorDoTiro.rotation);
+        ControladorDoGame.istancia.pontuacaoEstrela = ControladorDoGame.istancia.pontuacaoEstrela - 1;
+        ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
+        anim.SetBool("Atirar", false);
+    }
     void Pular()
     {
 
@@ -202,15 +217,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             Velocidade = correr;
-
             anim.SetBool("Correndo", true);
 
         }
         else
         {
-
             anim.SetBool("Correndo", false);
-
             Velocidade = aux;
         }
     }
@@ -282,7 +294,7 @@ public class Player : MonoBehaviour
             emPulo = true;
         }
     
-        if (collision.gameObject.tag == "Pass" || collision.gameObject.tag == "Sap")
+        if (collision.gameObject.tag == "Pass" || collision.gameObject.tag == "Sap" || collision.gameObject.tag == "Rato")
         {
 
             if (tempo >= 1f)
@@ -321,7 +333,7 @@ public class Player : MonoBehaviour
     }
     public void ComprarVida()
     {
-        if (ControladorDoGame.istancia.pontuacaoTotal >= 10)
+        if (ControladorDoGame.istancia.pontuacaoTotal >= 120)
         {
 
 
@@ -332,7 +344,7 @@ public class Player : MonoBehaviour
                     coracao2.SetActive(true);
                     Cora2 = true;
                     vidas = vidas - 1;
-                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 10;
+                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
                     ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
                 }
                 else
@@ -340,7 +352,7 @@ public class Player : MonoBehaviour
                     coracao1.SetActive(true);
                     Cora1 = true;
                     vidas = vidas - 1;
-                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 10;
+                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
                     ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
                 }
 
@@ -350,10 +362,20 @@ public class Player : MonoBehaviour
                 coracao2.SetActive(true);
                 Cora2 = true;
                 vidas = vidas - 1;
-                ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 10;
+                ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
                 ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
             }
             
+        }
+    }
+    public void ComprarEstrela()
+    {
+        if (ControladorDoGame.istancia.pontuacaoTotal >= 120)
+        {
+            ControladorDoGame.istancia.pontuacaoEstrela += +1;
+            ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
+            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+            ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
         }
     }
 

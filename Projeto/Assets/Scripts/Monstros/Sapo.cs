@@ -5,8 +5,16 @@ using UnityEngine;
 public class Sapo : MonoBehaviour
 {
     private Rigidbody2D rig;
+    private Animator anim;
+    public static Sapo istancia;
     // Start is called before the first frame update
+    private void Start()
 
+
+    {
+        anim = GetComponent<Animator>();
+    }
+    
 
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -18,9 +26,13 @@ public class Sapo : MonoBehaviour
         }
         if (collision.gameObject.tag == "Dead")
         {
-            
-            Destroy(gameObject);
+            Dead();
         }
         
+    }
+    public void Dead()
+    {
+        anim.SetTrigger("kill");
+        Destroy(gameObject, 0.25f);
     }
 }

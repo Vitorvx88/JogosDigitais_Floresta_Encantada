@@ -7,6 +7,7 @@ public class Atirar : MonoBehaviour
     public float TempoDeVida;
     public int pass;
     public int sap;
+    public int rato;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +36,20 @@ public class Atirar : MonoBehaviour
             ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
             Destroy(gameObject);
         }
-
-        if(collision.gameObject.tag == "Player"|| collision.gameObject.tag == "Testando")
+        if (collision.gameObject.tag == "Rato")
         {
-            ControladorDoGame.istancia.pontuacaoEstrela += +1;
+            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal + rato;
+            ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Player"|| collision.gameObject.tag == "Testando")
+        {
+            ControladorDoGame.istancia.pontuacaoEstrela += -1;
             ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
             Destroy(gameObject);
         }
 
     }
+    
 }
