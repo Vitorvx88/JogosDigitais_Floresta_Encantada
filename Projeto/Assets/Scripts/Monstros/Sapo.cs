@@ -15,7 +15,8 @@ public class Sapo : MonoBehaviour
 
     public Transform KIll;
     public LayerMask layer;
-    public GameObject Player;
+    //public GameObject Player;
+    public GameObject TEst;
     private bool colisao;
     private bool colisao2;
     public int Pontos;
@@ -32,7 +33,9 @@ public class Sapo : MonoBehaviour
         colisao2 = Physics2D.Linecast(DireitaMonster2.position, EsquerdaMonster2.position, layer);
         if (colisao||colisao2)
         {
-            Player.GetComponent<Player>().TomarDano();
+            //Player.GetComponent<Player>().TomarDano();
+            //Debug.Log("DAno");
+            TEst.GetComponent<Player>().TomarDano();
             aux = true;
         }
         else
@@ -48,7 +51,7 @@ public class Sapo : MonoBehaviour
         {
             float height = col.contacts[0].point.y - KIll.position.y;
             //Debug.Log(height);
-            if (height >= 0)
+            if (height !=0)
             {
                 col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 10f, ForceMode2D.Impulse);
                 Dead();

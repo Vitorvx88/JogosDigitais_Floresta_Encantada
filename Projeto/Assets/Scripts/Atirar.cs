@@ -22,17 +22,15 @@ public class Atirar : MonoBehaviour
         transform.Translate(Vector2.right * 13 * Time.deltaTime*2);
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Pass"|| collision.gameObject.tag == "Rato"|| collision.gameObject.tag == "Sap")
         {
             Destroy(gameObject);
         }
 
-        if (collision.gameObject.tag == "Player"|| collision.gameObject.tag == "Testando")
+        if (collision.gameObject.tag == "Testando")
         {
-            ControladorDoGame.istancia.pontuacaoEstrela += -1;
-            ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
             Destroy(gameObject);
         }
 

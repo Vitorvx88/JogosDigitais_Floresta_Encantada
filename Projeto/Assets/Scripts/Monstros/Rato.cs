@@ -13,8 +13,9 @@ public class Rato : MonoBehaviour
     private bool istroca;
     public bool inicial;
     private Animator anim;
-    public GameObject Player;
+   // public GameObject Player;
     public int Pontos;
+    public GameObject TEst;
 
     public Transform DireitaMonster;
     public Transform EsquerdaMonster;
@@ -74,13 +75,15 @@ public class Rato : MonoBehaviour
         {
             aux = true;
             //Debug.Log("dano");
+
+            TEst.GetComponent<Player>().TomarDano();
            
-            Player.GetComponent<Player>().TomarDano();
+           // ControladorDoGame.istancia.TEst(10);
 
         }
         else
             aux = false;
-      
+
 
     }
     public void Dead()
@@ -90,14 +93,14 @@ public class Rato : MonoBehaviour
         anim.SetTrigger("RatoKill");
         Destroy(gameObject, 0.34f);
     }
- 
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Dead")
         {
             Dead();
         }
-            if (col.gameObject.tag =="Player" && aux==false)
+        if (col.gameObject.tag == "Player" && aux == false)
         {
             float height = col.contacts[0].point.y - KIll.position.y;
 

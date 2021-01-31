@@ -57,4 +57,5 @@ public class ControladorDoGame : MonoBehaviour
         this.pontuacaoTotal += pontos;
         scoreText.text = pontuacaoTotal.ToString();
     }
+
 }

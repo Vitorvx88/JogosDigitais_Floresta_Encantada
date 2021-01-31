@@ -22,9 +22,11 @@ public class Player : MonoBehaviour
     private float aux2;
     private float aux3;
     private CharacterController ColliderPlayer;
+    private bool NaoMoverParado;
     private string cenaAtual;
     private bool agachado;
-    
+    private float movi;
+
 
     [Header("Vidas")]
     public GameObject coracao1;
@@ -43,8 +45,7 @@ public class Player : MonoBehaviour
     public float velocidade;
     public float ProxTiro;
     private float PFv;
-   
-    //public float TempoTiro;
+
 
 
     [Header("Painel e Menu")]
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-       // Cursor.visible = false;
+        // Cursor.visible = false;
         cronometro = 0f;
         isDano = false;
         cenaAtual = SceneManager.GetActiveScene().name;
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
         Cora1 = true;
         Cora2 = true;
         PFv = 2;
-        
+        NaoMoverParado = true;
 
         Time.timeScale = 1f;
         aux2 = ForcaPulo;
@@ -81,14 +82,44 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
+
     }
     // Update is called once per frame
     void Update()
-    {   
+    {
         if (!pause)
         {
-            Mover();
+
+
+            if (Input.GetKey(KeyCode.X))
+            {
+                movi = 0;
+                NaoMoverParado = false;
+            }
+            else
+            {
+                NaoMoverParado = true;
+                movi = Input.GetAxis("Horizontal");
+            }
+
+
+            if (NaoMoverParado)
+            {
+                Mover(movi);
+            }
+            else
+            {
+                if (Input.GetAxis("Horizontal") > 0)
+                {
+                    transform.eulerAngles = new Vector3(0f, 0f, 0f);
+                }
+
+
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    transform.eulerAngles = new Vector3(0f, 180f, 0f);
+                }
+            }
             Pular();
             Correr();
             Abaixar();
@@ -98,7 +129,7 @@ public class Player : MonoBehaviour
             tempo += Time.deltaTime;
             PFv += Time.deltaTime;
 
-  
+
             if (Input.GetKey(KeyCode.Z) && PFv >= ProxTiro && agachado)
             {
                 if (ControladorDoGame.istancia.pontuacaoEstrela > 0)
@@ -141,7 +172,7 @@ public class Player : MonoBehaviour
                 }
             }
 
-            }
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseGame();
@@ -149,14 +180,13 @@ public class Player : MonoBehaviour
 
     }
 
-    void Mover()
+    void Mover(float movi)
     {
-       // Vector3 movimento = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-       // transform.position += movimento * Time.deltaTime * Velocidade;
+        // Vector3 movimento = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        // transform.position += movimento * Time.deltaTime * Velocidade;
+        // Debug.Log(movi);
 
-        float movi = Input.GetAxis("Horizontal");
         rig.velocity = new Vector2(movi * Velocidade, rig.velocity.y);
-
 
         if (movi > 0f)
         {
@@ -177,13 +207,13 @@ public class Player : MonoBehaviour
         }
 
     }
-    void Morte()
+    public void Morte()
     {
-        if(PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.y) <= -5.943812)
+        if (PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.y) <= -5.943812)
         {
             ControladorDoGame.istancia.AtivarGameOver();
             Temporizador.Stop();
-            
+
             coracao2.SetActive(false);
             coracao1.SetActive(false);
             coracao3.SetActive(false);
@@ -204,7 +234,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && agachado)
         {
-          
+
             if (!emPulo)
             {
                 rig.AddForce(new Vector2(0f, ForcaPulo * 1.2f), ForceMode2D.Impulse);
@@ -241,11 +271,13 @@ public class Player : MonoBehaviour
     }
     void Abaixar()
     {
+
         Vector3 novaPosicao = transform.position;
         if (!emPulo)
         {
             if (Input.GetKey(KeyCode.X))
             {
+
                 novaPosicao.x = PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x);
                 transform.position = novaPosicao;
 
@@ -299,6 +331,7 @@ public class Player : MonoBehaviour
             emPulo = false;
             anim.SetBool("Pulando", false);
         }
+   
     }
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -307,36 +340,41 @@ public class Player : MonoBehaviour
             emPulo = true;
         }
     }
+
+    public void VamosPular()
+    {
+        anim.SetBool("Abaixar", true);
+    }
     public void TomarDano()
     {
-            if (tempo >= 1f)
+        if (tempo >= 1f)
+        {
+            vidas++;
+            tempo = 0f;
+
+            if (vidas == 1)
             {
-                vidas++;
-                tempo = 0f;
-
-                if (vidas == 1)
-                {
-                    coracao1.SetActive(false);
-                    anim.SetBool("Dano", true);
-                    isDano = true;
-                    Cora1 = false;
-                }
-                if (vidas == 2)
-                {
-                    coracao2.SetActive(false);
-                    anim.SetBool("Dano", true);
-                    isDano = true;
-                    Cora2 = false;
-                }
-                if (vidas == 3)
-                {
-                    coracao3.SetActive(false);
-                    ControladorDoGame.istancia.AtivarGameOver();
-                    Temporizador.Stop();
-                    Destroy(gameObject);
-                }
-
+                coracao1.SetActive(false);
+                anim.SetBool("Dano", true);
+                isDano = true;
+                Cora1 = false;
             }
+            if (vidas == 2)
+            {
+                coracao2.SetActive(false);
+                anim.SetBool("Dano", true);
+                isDano = true;
+                Cora2 = false;
+            }
+            if (vidas == 3)
+            {
+                coracao3.SetActive(false);
+                ControladorDoGame.istancia.AtivarGameOver();
+                Temporizador.Stop();
+                Destroy(gameObject);
+            }
+
+        }
     }
     public void ComprarVida()
     {
@@ -372,7 +410,7 @@ public class Player : MonoBehaviour
                 ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
                 ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
             }
-            
+
         }
     }
     public void ComprarEstrela()
