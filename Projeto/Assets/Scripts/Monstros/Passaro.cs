@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Passaro : MonoBehaviour
 {
+    
     public float VelPass;
     public float moverPass;
     public static Passaro istancia;
@@ -22,7 +23,6 @@ public class Passaro : MonoBehaviour
     public LayerMask layer;
     private bool aux;
     private bool colisao;
-
 
 
     private void Start()
@@ -80,7 +80,6 @@ public class Passaro : MonoBehaviour
         }
         else
             aux = false;
-
 
     }
     public void Dead()

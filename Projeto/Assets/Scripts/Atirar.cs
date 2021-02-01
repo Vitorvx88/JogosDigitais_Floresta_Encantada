@@ -20,11 +20,12 @@ public class Atirar : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * 13 * Time.deltaTime*2);
+     
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Pass"|| collision.gameObject.tag == "Rato"|| collision.gameObject.tag == "Sap")
+        if (collision.gameObject.tag == "Pass"|| collision.gameObject.tag == "Rato"|| collision.gameObject.tag == "Sap"|| collision.gameObject.tag == "Bos")
         {
             Destroy(gameObject);
         }
@@ -35,5 +36,5 @@ public class Atirar : MonoBehaviour
         }
 
     }
-    
+
 }

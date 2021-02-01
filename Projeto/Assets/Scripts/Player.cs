@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         if (!pause)
         {
 
-
+            Pular();
             if (Input.GetKey(KeyCode.X))
             {
                 movi = 0;
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
                     transform.eulerAngles = new Vector3(0f, 180f, 0f);
                 }
             }
-            Pular();
+           
             Correr();
             Abaixar();
             SalvarPosicao();
@@ -331,7 +331,10 @@ public class Player : MonoBehaviour
             emPulo = false;
             anim.SetBool("Pulando", false);
         }
-   
+         if(collision.gameObject.tag == "Bos")
+        {
+            TomarDano();
+        }
     }
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -347,8 +350,10 @@ public class Player : MonoBehaviour
     }
     public void TomarDano()
     {
+      //  Debug.Log("algo");
         if (tempo >= 1f)
         {
+           // Debug.Log("algo2");
             vidas++;
             tempo = 0f;
 
