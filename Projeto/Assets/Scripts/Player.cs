@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private string cenaAtual;
     private bool agachado;
     private float movi;
+    private float TempoDash;
 
 
     [Header("Vidas")]
@@ -120,12 +121,12 @@ public class Player : MonoBehaviour
                     transform.eulerAngles = new Vector3(0f, 180f, 0f);
                 }
             }
-           
             Correr();
             Abaixar();
             SalvarPosicao();
             Morte();
 
+            TempoDash += Time.deltaTime;
             tempo += Time.deltaTime;
             PFv += Time.deltaTime;
 
@@ -177,6 +178,13 @@ public class Player : MonoBehaviour
         {
             pauseGame();
         }
+
+    }
+     void Dash()
+    {
+        Vector3 novaPosicao = transform.position;
+        novaPosicao.x = PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x);
+        transform.position = novaPosicao;
 
     }
 
@@ -335,6 +343,11 @@ public class Player : MonoBehaviour
         {
             TomarDano();
         }
+       /* if (collision.gameObject.tag == "Hit")
+        {
+            
+
+        }*/
     }
     void OnCollisionExit2D(Collision2D collision)
     {

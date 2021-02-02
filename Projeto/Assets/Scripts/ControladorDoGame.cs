@@ -17,8 +17,9 @@ public class ControladorDoGame : MonoBehaviour
     // Start is called before the first frame update 
     void Start()
     {
-    pontuacaoEstrela = 10;
-    istancia = this;
+        pontuacaoEstrela = 10;
+        istancia = this;
+        atualizarEstrelas();
     }
     public void atualizarPoints()
     {
