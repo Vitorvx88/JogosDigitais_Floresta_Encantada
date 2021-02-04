@@ -24,6 +24,8 @@ public class Bos_1 : MonoBehaviour
     private bool LadoDireito = false;
     public GameObject Jogador;
     private float Vida;
+    private bool isDano;
+    private float cronometro;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,9 +33,13 @@ public class Bos_1 : MonoBehaviour
     }
     void Start()
     {
+        isDano = false;
         player = false;
         PFv = 2;
         Vida = 50;
+        cronometro = 0f;
+        
+
         posicaoDoPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = gameObject.GetComponent<Animator>();
 
@@ -46,8 +52,19 @@ public class Bos_1 : MonoBehaviour
         PFv += Time.deltaTime;
         if (posicaoDoPlayer.gameObject != null)
         {
-           
-            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 396.44f && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 432.3f)
+
+            if (isDano == true)
+            {
+                cronometro += Time.deltaTime;
+                if (cronometro >= 1f)
+                {
+                    anim.SetBool("Dano", false);
+                    isDano = false;
+                    cronometro = 0f;
+                }
+            }
+
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 438.6f && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f)
             {
                 anim.SetBool("Andando", true);
                 Test = new Vector2(posicaoDoPlayer.position.x, transform.position.y);
@@ -113,14 +130,20 @@ public class Bos_1 : MonoBehaviour
     }
        public void PerderVida(float dano)
     {
+        anim.SetBool("Dano", true);
         Vida += -dano;
         checarVida();
+        isDano = true;
     }
     void checarVida()
     {
         if (Vida <= 0)
         {
-            Destroy(gameObject);
+            anim.SetBool("Dano", false);
+            anim.SetBool("Andando", false);
+
+            anim.SetTrigger("Morte");
+            Destroy(gameObject,0.80f);
         }
     }
 }

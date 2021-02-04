@@ -217,7 +217,7 @@ public class Player : MonoBehaviour
     }
     public void Morte()
     {
-        if (PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.y) <= -5.943812)
+        if (PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.y) <= -10)
         {
             ControladorDoGame.istancia.AtivarGameOver();
             Temporizador.Stop();
