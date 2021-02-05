@@ -56,12 +56,25 @@ public class Player : MonoBehaviour
     [Header("Loja")]
     public GameObject Loja;
 
+    [Header("Caverna")]
+    public GameObject Entrada;
+
+    [Header("Assistencia")]
+    public GameObject Assist;
+    public GameObject Texto;
+    private float TempLocked;
+    private bool TempLockedIs;
+    private bool unica;
+
     void Awake()
     {
         // Cursor.visible = false;
         cronometro = 0f;
+        TempLocked = 0f;
         isDano = false;
+        unica = true;
         cenaAtual = SceneManager.GetActiveScene().name;
+        Texto.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -71,6 +84,9 @@ public class Player : MonoBehaviour
         Cora2 = true;
         PFv = 2;
         NaoMoverParado = true;
+        Entrada.SetActive(true);
+       // 
+        TempLockedIs = false;
 
         Time.timeScale = 1f;
         aux2 = ForcaPulo;
@@ -177,6 +193,19 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseGame();
+        }
+        if (TempLockedIs && unica)
+        {
+            TempLocked +=Time.deltaTime;
+            Texto.SetActive(true);
+            if (TempLocked >= 18f)
+            {
+                Assist.SetActive(false);
+                TempLockedIs = false;
+                Texto.SetActive(false);
+                TempLocked = 0f;
+                unica = false;
+            }
         }
 
     }
@@ -355,6 +384,27 @@ public class Player : MonoBehaviour
         {
             emPulo = true;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Entrada")
+        {
+            Entrada.SetActive(false);
+        }
+        if (collision.gameObject.tag == "Aviso")
+        {
+            TempLockedIs = true;
+        }
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Saida")
+        {
+            Entrada.SetActive(true);
+        }
+       
     }
 
     public void VamosPular()

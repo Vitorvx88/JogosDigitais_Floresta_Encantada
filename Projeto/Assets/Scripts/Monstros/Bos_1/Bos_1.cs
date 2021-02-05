@@ -71,7 +71,7 @@ public class Bos_1 : MonoBehaviour
                 }
             }
 
-            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 438.6f && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f)
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 446.15f /*&& PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f*/)
             {
                 anim.SetBool("Andando", true);
                 Test = new Vector2(posicaoDoPlayer.position.x, transform.position.y);

@@ -18,7 +18,7 @@ public class Shadown_Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * 2 * Time.deltaTime * 2);
+        transform.Translate(Vector2.right * 3 * Time.deltaTime * 2);
 
     }
 
