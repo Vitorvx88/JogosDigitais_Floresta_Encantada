@@ -17,6 +17,7 @@ TagManager:
   - Loja
   - Bos
   - Hit
+  - Espinhos
   layers:
   - Default
   - TransparentFX

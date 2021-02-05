@@ -17,6 +17,7 @@ public class Bos_1 : MonoBehaviour
 
     [Header("Atributos_Basicos")]
     private string cenaAtual;
+    public static Bos_1 istancia;
     public float Velocidade;
     private Transform posicaoDoPlayer;
     private Vector2 Test;
@@ -26,6 +27,9 @@ public class Bos_1 : MonoBehaviour
     private float Vida;
     private bool isDano;
     private float cronometro;
+    public GameObject HitDam;
+    private bool Isfragil;
+    private float TimeHit;
     // Start is called before the first frame update
     void Awake()
     {
@@ -33,12 +37,15 @@ public class Bos_1 : MonoBehaviour
     }
     void Start()
     {
+        Isfragil = false;
+      
         isDano = false;
         player = false;
         PFv = 2;
         Vida = 50;
         cronometro = 0f;
-        
+        HitDam.SetActive(false);
+
 
         posicaoDoPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = gameObject.GetComponent<Animator>();
@@ -50,7 +57,7 @@ public class Bos_1 : MonoBehaviour
     void Update()
     {
         PFv += Time.deltaTime;
-        if (posicaoDoPlayer.gameObject != null)
+        if (posicaoDoPlayer.gameObject != null && Isfragil==false)
         {
 
             if (isDano == true)
@@ -94,6 +101,19 @@ public class Bos_1 : MonoBehaviour
 
 
         }
+        if (Isfragil)
+        {
+            TimeHit += Time.deltaTime;
+            anim.SetBool("Fragil", true);
+            HitDam.SetActive(true);
+            if (TimeHit >= 2.5f)
+            {
+                HitDam.SetActive(false);
+                TimeHit = 0f;
+                anim.SetBool("Fragil", false);
+                Isfragil = false;
+            }
+        }
      
     }
     void SalvarPosicao()
@@ -118,9 +138,17 @@ public class Bos_1 : MonoBehaviour
         }
         if (col.gameObject.tag == "Dead")
         {
-            PerderVida(5);
+            PerderVida(7);
         }
+     
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Espinhos")
+        {
+            Isfragil = true;
+        }
     }
     void Atirar()
     {
@@ -141,9 +169,19 @@ public class Bos_1 : MonoBehaviour
         {
             anim.SetBool("Dano", false);
             anim.SetBool("Andando", false);
-
+            ControladorDoGame.istancia.ReceberPontos(300);
+            ControladorDoGame.istancia.atualizarPoints();
             anim.SetTrigger("Morte");
             Destroy(gameObject,0.80f);
         }
+    }
+    public bool vidaB()
+    {
+        if (this.Vida <= 0)
+        {
+            return false;
+        }
+        else
+            return true;
     }
 }
