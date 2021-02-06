@@ -33,12 +33,14 @@ public class Player : MonoBehaviour
     public GameObject coracao1;
     public GameObject coracao2;
     public GameObject coracao3;
+    public GameObject coracao4;
     private int vidas;
     private float tempo;
     private bool isDano;
     private float cronometro;
     private bool Cora1;
     private bool Cora2;
+    private bool cora3;
 
     [Header("Atirar")]
     public GameObject Tiro;
@@ -437,6 +439,13 @@ public class Player : MonoBehaviour
             if (vidas == 3)
             {
                 coracao3.SetActive(false);
+                anim.SetBool("Dano", true);
+                isDano = true;
+                cora3 = false;
+            }
+                if (vidas == 4)
+            {
+                coracao4.SetActive(false);
                 ControladorDoGame.istancia.AtivarGameOver();
                 Temporizador.Stop();
                 Destroy(gameObject);
@@ -454,11 +463,22 @@ public class Player : MonoBehaviour
             {
                 if (Cora2 == false)
                 {
-                    coracao2.SetActive(true);
-                    Cora2 = true;
-                    vidas = vidas - 1;
-                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
-                    ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
+                    if (cora3 == false)
+                    {
+                        coracao3.SetActive(true);
+                        cora3 = true;
+                        vidas = vidas - 1;
+                        ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+                        ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
+                    }else
+                    {
+                        coracao2.SetActive(true);
+                        Cora2 = true;
+                        vidas = vidas - 1;
+                        ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+                        ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
+                    }
+                    
                 }
                 else
                 {
@@ -470,15 +490,6 @@ public class Player : MonoBehaviour
                 }
 
             }
-            if (Cora2 == false)
-            {
-                coracao2.SetActive(true);
-                Cora2 = true;
-                vidas = vidas - 1;
-                ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
-                ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
-            }
-
         }
     }
     public void ComprarEstrela()
