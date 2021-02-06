@@ -18,6 +18,9 @@ TagManager:
   - Bos
   - Hit
   - Espinhos
+  - Saida
+  - Entrada
+  - Aviso
   layers:
   - Default
   - TransparentFX
