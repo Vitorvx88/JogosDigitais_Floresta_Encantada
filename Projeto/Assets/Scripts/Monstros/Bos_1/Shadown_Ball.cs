@@ -18,13 +18,13 @@ public class Shadown_Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * 3 * Time.deltaTime * 2);
+        transform.Translate(Vector2.right * 2 * Time.deltaTime * 2);
 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 8 || collision.gameObject.tag == "Testando")
+        if (collision.gameObject.layer == 8 || collision.gameObject.tag == "Testando"|| collision.gameObject.tag == "Chao")
         {
             Destroy(gameObject);
         }

@@ -56,14 +56,15 @@ public class Bos_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PFv += Time.deltaTime;
+        
         if (posicaoDoPlayer.gameObject != null && Isfragil==false)
         {
+            
 
             if (isDano == true)
             {
                 cronometro += Time.deltaTime;
-                if (cronometro >= 1f)
+                if (cronometro >= 1.2f)
                 {
                     anim.SetBool("Dano", false);
                     isDano = false;
@@ -73,6 +74,7 @@ public class Bos_1 : MonoBehaviour
 
             if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 446.15f /*&& PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f*/)
             {
+                PFv += Time.deltaTime;
                 anim.SetBool("Andando", true);
                 Test = new Vector2(posicaoDoPlayer.position.x, transform.position.y);
                 transform.position = Vector2.MoveTowards(transform.position, Test, Velocidade * Time.deltaTime);

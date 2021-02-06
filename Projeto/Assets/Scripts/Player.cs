@@ -455,7 +455,7 @@ public class Player : MonoBehaviour
     }
     public void ComprarVida()
     {
-        if (ControladorDoGame.istancia.pontuacaoTotal >= 120)
+        if (ControladorDoGame.istancia.pontuacaoTotal >= 110)
         {
 
 
@@ -494,7 +494,7 @@ public class Player : MonoBehaviour
     }
     public void ComprarEstrela()
     {
-        if (ControladorDoGame.istancia.pontuacaoTotal >= 120)
+        if (ControladorDoGame.istancia.pontuacaoTotal >= 110)
         {
             ControladorDoGame.istancia.pontuacaoEstrela += +1;
             ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);

@@ -133,4 +133,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coletar: {fileID: 7033094065825847381, guid: aff52bea9d19a0342aba742c4f69a09c, type: 3}
-  pontuacao: 10
+  pontuacao: 15

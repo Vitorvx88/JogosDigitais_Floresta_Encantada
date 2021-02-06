@@ -12,20 +12,20 @@ public class Atirar : MonoBehaviour
     void Start()
     {
  
-       TempoDeVida = 3f;
+       TempoDeVida = 1f;
        Destroy(gameObject, TempoDeVida);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * 13 * Time.deltaTime*2);
+        transform.Translate(Vector2.right * 5 * Time.deltaTime*2);
      
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Pass"|| collision.gameObject.tag == "Rato"|| collision.gameObject.tag == "Sap"|| collision.gameObject.tag == "Bos")
+        if (collision.gameObject.tag == "Pass"|| collision.gameObject.tag == "Rato"|| collision.gameObject.tag == "Sap"|| collision.gameObject.tag == "Bos"|| collision.gameObject.layer==8)
         {
             Destroy(gameObject);
         }
