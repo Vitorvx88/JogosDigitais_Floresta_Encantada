@@ -42,7 +42,7 @@ public class Bos_1 : MonoBehaviour
         isDano = false;
         player = false;
         PFv = 2;
-        Vida = 50;
+        Vida = 68;
         cronometro = 0f;
         HitDam.SetActive(false);
 
