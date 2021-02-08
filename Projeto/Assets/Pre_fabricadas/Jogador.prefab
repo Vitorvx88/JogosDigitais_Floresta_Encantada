@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1770183441767299930}
   - component: {fileID: 1770183441767299931}
   - component: {fileID: 1770183441767299928}
-  - component: {fileID: 1770183441767299929}
   - component: {fileID: 12136190}
   m_Layer: 12
   m_Name: Jogador
@@ -126,13 +125,18 @@ MonoBehaviour:
   coracao1: {fileID: 0}
   coracao2: {fileID: 0}
   coracao3: {fileID: 0}
+  coracao4: {fileID: 0}
   Tiro: {fileID: 4690620677722272216, guid: 674da814bafafd744b73084cf78de974, type: 3}
   PivorDoTiro: {fileID: 5380567096836773531}
   velocidade: 4
   ProxTiro: 1
   pausePainel: {fileID: 0}
   cena: Menu
+  Evento: {fileID: 0}
   Loja: {fileID: 0}
+  Entrada: {fileID: 0}
+  Assist: {fileID: 0}
+  Texto: {fileID: 0}
 --- !u!95 &1770183441767299928
 Animator:
   serializedVersion: 3
@@ -152,21 +156,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1770183441767299929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770183441767299910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
 --- !u!58 &12136190
 CircleCollider2D:
   m_ObjectHideFlags: 0

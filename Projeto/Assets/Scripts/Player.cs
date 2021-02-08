@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -54,6 +51,7 @@ public class Player : MonoBehaviour
     [Header("Painel e Menu")]
     public GameObject pausePainel;
     public string cena;
+    
 
     [Header("Loja")]
     public GameObject Loja;
@@ -71,6 +69,7 @@ public class Player : MonoBehaviour
     void Awake()
     {
         // Cursor.visible = false;
+        
         cronometro = 0f;
         TempLocked = 0f;
         isDano = false;
@@ -82,12 +81,14 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         Cora1 = true;
         Cora2 = true;
+        cora3 = true;
         PFv = 2;
         NaoMoverParado = true;
         Entrada.SetActive(true);
-       // 
+        // 
         TempLockedIs = false;
 
         Time.timeScale = 1f;
@@ -95,8 +96,8 @@ public class Player : MonoBehaviour
         aux = Velocidade;
         anim = gameObject.GetComponent<Animator>();
         rig = GetComponent<Rigidbody2D>();
-        // Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
 
     }
     void FixedUpdate()
@@ -198,7 +199,7 @@ public class Player : MonoBehaviour
         }
         if (TempLockedIs && unica)
         {
-            TempLocked +=Time.deltaTime;
+            TempLocked += Time.deltaTime;
             Texto.SetActive(true);
             if (TempLocked >= 18f)
             {
@@ -211,7 +212,7 @@ public class Player : MonoBehaviour
         }
 
     }
-     void Dash()
+    void Dash()
     {
         Vector3 novaPosicao = transform.position;
         novaPosicao.x = PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x);
@@ -370,15 +371,15 @@ public class Player : MonoBehaviour
             emPulo = false;
             anim.SetBool("Pulando", false);
         }
-         if(collision.gameObject.tag == "Bos")
+        if (collision.gameObject.tag == "Bos")
         {
             TomarDano();
         }
-       /* if (collision.gameObject.tag == "Hit")
-        {
-            
+        /* if (collision.gameObject.tag == "Hit")
+         {
 
-        }*/
+
+         }*/
     }
     void OnCollisionExit2D(Collision2D collision)
     {
@@ -390,7 +391,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Entrada")
+        if (collision.gameObject.tag == "Entrada")
         {
             Entrada.SetActive(false);
         }
@@ -406,22 +407,19 @@ public class Player : MonoBehaviour
         {
             Entrada.SetActive(true);
         }
-       
+
     }
 
-    public void VamosPular()
-    {
-        anim.SetBool("Abaixar", true);
-    }
     public void TomarDano()
     {
-      //  Debug.Log("algo");
+        //  Debug.Log("algo");
         if (tempo >= 1f)
         {
-           // Debug.Log("algo2");
+            // Debug.Log("algo2");
             vidas++;
             tempo = 0f;
 
+            Debug.Log(vidas);
             if (vidas == 1)
             {
                 coracao1.SetActive(false);
@@ -443,7 +441,7 @@ public class Player : MonoBehaviour
                 isDano = true;
                 cora3 = false;
             }
-                if (vidas == 4)
+            if (vidas == 4)
             {
                 coracao4.SetActive(false);
                 ControladorDoGame.istancia.AtivarGameOver();
@@ -465,27 +463,31 @@ public class Player : MonoBehaviour
                 {
                     if (cora3 == false)
                     {
+                        Debug.Log("Cora e");
                         coracao3.SetActive(true);
                         cora3 = true;
                         vidas = vidas - 1;
-                        ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+                        ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 110;
                         ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
-                    }else
+                    }
+                    else if(Cora2==false)
                     {
+                        Debug.Log("Cora 2");
                         coracao2.SetActive(true);
                         Cora2 = true;
                         vidas = vidas - 1;
-                        ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+                        ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 110;
                         ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
                     }
-                    
+
                 }
-                else
+                else if(Cora1==false)
                 {
+                    Debug.Log("Cora 1");
                     coracao1.SetActive(true);
                     Cora1 = true;
                     vidas = vidas - 1;
-                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+                    ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 110;
                     ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
                 }
 
@@ -498,7 +500,7 @@ public class Player : MonoBehaviour
         {
             ControladorDoGame.istancia.pontuacaoEstrela += +1;
             ControladorDoGame.istancia.attEstrela(ControladorDoGame.istancia.pontuacaoEstrela);
-            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 120;
+            ControladorDoGame.istancia.pontuacaoTotal = ControladorDoGame.istancia.pontuacaoTotal - 110;
             ControladorDoGame.istancia.att(ControladorDoGame.istancia.pontuacaoTotal);
         }
     }
@@ -511,6 +513,8 @@ public class Player : MonoBehaviour
     public void VoltarMenu()
     {
         SceneManager.LoadScene("Menu");
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
 }
