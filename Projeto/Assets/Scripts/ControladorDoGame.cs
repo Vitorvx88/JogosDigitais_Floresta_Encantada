@@ -16,24 +16,35 @@ public class ControladorDoGame : MonoBehaviour
     public GameObject jogador;
     private float tempoS;
     private float tempoM;
-    private bool ativarCheckPoint;
+    public bool ativarCheckPoint;
     public GameObject monstros;
+
 
 
     private int Pontos;
     // Start is called before the first frame update 
     void Start()
     {
-        pontuacaoEstrela = 5;
-        istancia = this;
-        atualizarEstrelas();
-        this.pontuacaoTotal=PlayerPrefs.GetInt("pontuacao");
-        this.pontuacaoEstrela=PlayerPrefs.GetInt("pontuacaoEstrela");
-        this.tempoS=PlayerPrefs.GetFloat("tempoS");
-        this.tempoM=PlayerPrefs.GetFloat("tempoM");
+   
         atualizarPoints();
         atualizarEstrelas();
-        ativarCheckPoint = false;
+        pontuacaoEstrela = 5;
+        istancia = this;
+       
+        
+
+        if (PlayerPrefs.GetInt("kkj") == 1)
+        {
+          
+            this.pontuacaoTotal = PlayerPrefs.GetInt("pontuacao");
+            this.pontuacaoEstrela = PlayerPrefs.GetInt("pontuacaoEstrela");
+            this.tempoS = PlayerPrefs.GetFloat("tempoS");
+            this.tempoM = PlayerPrefs.GetFloat("tempoM");
+
+            atualizarPoints();
+            atualizarEstrelas();
+
+        }
         if (pontuacaoTotal > 0 )
         {
             monstros.SetActive(true);
@@ -83,7 +94,8 @@ public class ControladorDoGame : MonoBehaviour
     }
     public void AtivarGameOver()
     {
-
+        
+       // Debug.Log(PlayerPrefs.GetInt("kkj"));
         GameOver.SetActive(true);
         Cursor.visible = true;
         ControladorDoGame.istancia.resetarPontos();
@@ -93,9 +105,11 @@ public class ControladorDoGame : MonoBehaviour
     }
     public void AtivarGameOverBos()
     {
-
+        //PlayerPrefs.SetInt("kkj", 2);
+       // Debug.Log(PlayerPrefs.GetInt("kkj")+" "+"Bos");
         GameOver.SetActive(true);
         Cursor.visible = true;
+        
         //Debug.Log("morreu pro boss 2");
 
     }

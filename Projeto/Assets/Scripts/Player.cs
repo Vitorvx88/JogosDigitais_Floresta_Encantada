@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     private bool Cora1;
     private bool Cora2;
     private bool cora3;
-    private bool checkP;
+    
 
     [Header("Atirar")]
     public GameObject Tiro;
@@ -63,6 +63,9 @@ public class Player : MonoBehaviour
     [Header("Assistencia")]
     public GameObject Assist;
     public GameObject Texto;
+    public GameObject CheckP;
+    public GameObject CheckP2;
+    public GameObject CheckP3;
     private float TempLocked;
     private bool TempLockedIs;
     private bool unica;
@@ -77,17 +80,21 @@ public class Player : MonoBehaviour
         unica = true;
         cenaAtual = SceneManager.GetActiveScene().name;
         Texto.SetActive(false);
+        CheckP.SetActive(false);
+        CheckP2.SetActive(false);
+        CheckP3.SetActive(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
 
+        ControladorDoGame.istancia.atualizarEstrelas();
         Cora1 = true;
         Cora2 = true;
         cora3 = true;
         PFv = 2;
-        checkP = false;
+       
         NaoMoverParado = true;
         Entrada.SetActive(true);
         // 
@@ -101,10 +108,12 @@ public class Player : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
        
-        if (ControladorDoGame.istancia.verificarCheckPoint())
+        if (PlayerPrefs.GetInt("kkj")==1)
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
         }
+       else
+           transform.position = new Vector3(-8.079f, -1.152f, 0);
 
     }
     void FixedUpdate()
@@ -208,15 +217,35 @@ public class Player : MonoBehaviour
         if (TempLockedIs && unica)
         {
             TempLocked += Time.deltaTime;
-            Texto.SetActive(true);
-            if (TempLocked >= 18f)
+            CheckP.SetActive(true);
+            if (TempLocked >= 0.5f)
             {
-                Assist.SetActive(false);
-                TempLockedIs = false;
-                Texto.SetActive(false);
-                TempLocked = 0f;
-                unica = false;
+                CheckP.SetActive(false);
+                CheckP2.SetActive(true);
+                if (TempLocked >= 1f)
+                {
+                    CheckP2.SetActive(false);
+                    CheckP3.SetActive(true);
+                    if (TempLocked >= 1.5f)
+                    {
+                        CheckP3.SetActive(false);
+                        if (TempLocked >= 2f)
+                        {
+                            Texto.SetActive(true);
+                            if (TempLocked >= 18f)
+                            {
+                                Assist.SetActive(false);
+                                TempLockedIs = false;
+                                Texto.SetActive(false);
+                                TempLocked = 0f;
+                                unica = false;
+                            }
+                        }
+                    }
+                }
             }
+            
+           
         }
 
     }
@@ -405,9 +434,13 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "Aviso")
         {
-            controler.GetComponent<ControladorDoGame>().receberV();
             TempLockedIs = true;
             ControladorDoGame.istancia.checkPoint();
+            PlayerPrefs.SetInt("kkj", 1);
+        }
+        if(collision.gameObject.tag == "Inicio")
+        {
+            PlayerPrefs.SetInt("kkj", 2);
         }
 
     }
@@ -453,7 +486,7 @@ public class Player : MonoBehaviour
             if (vidas == 4)
             {
                 
-                if (controler.GetComponent<ControladorDoGame>().verificarCheckPoint())
+                if (PlayerPrefs.GetInt("kkj")==1)
                 {
                     //Debug.Log("morreu pro boss");
                     coracao4.SetActive(false);
@@ -462,11 +495,13 @@ public class Player : MonoBehaviour
                     Destroy(gameObject);
 
                 }
-                else if(!controler.GetComponent<ControladorDoGame>().verificarCheckPoint())
+                else if(PlayerPrefs.GetInt("kkj") == 2)
                 {
                     //Debug.Log("morreu sem ser pro boss");
+                    PlayerPrefs.SetInt("Kkj", 2);
                     coracao4.SetActive(false);
                     ControladorDoGame.istancia.AtivarGameOver();
+
                     Temporizador.Stop();
                     Destroy(gameObject);
                     
@@ -487,7 +522,7 @@ public class Player : MonoBehaviour
                 {
                     if (cora3 == false)
                     {
-                        Debug.Log("Cora e");
+                       // Debug.Log("Cora e");
                         coracao3.SetActive(true);
                         cora3 = true;
                         vidas = vidas - 1;
@@ -496,7 +531,7 @@ public class Player : MonoBehaviour
                     }
                     else if(Cora2==false)
                     {
-                        Debug.Log("Cora 2");
+                       // Debug.Log("Cora 2");
                         coracao2.SetActive(true);
                         Cora2 = true;
                         vidas = vidas - 1;
@@ -507,7 +542,7 @@ public class Player : MonoBehaviour
                 }
                 else if(Cora1==false)
                 {
-                    Debug.Log("Cora 1");
+                   // Debug.Log("Cora 1");
                     coracao1.SetActive(true);
                     Cora1 = true;
                     vidas = vidas - 1;

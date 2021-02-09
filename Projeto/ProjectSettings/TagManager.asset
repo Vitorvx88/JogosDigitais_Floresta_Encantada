@@ -21,6 +21,7 @@ TagManager:
   - Saida
   - Entrada
   - Aviso
+  - Inicio
   layers:
   - Default
   - TransparentFX

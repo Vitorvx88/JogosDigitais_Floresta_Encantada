@@ -267,7 +267,7 @@ MonoBehaviour:
   TrocarRotation: 1
   inicial: 1
   Pontos: 20
-  TEst: {fileID: 0}
+  TEst: {fileID: 1770183441767299910, guid: 93310d8434f2e174e913a0b964b3bef2, type: 3}
   DireitaMonster: {fileID: 133868500}
   EsquerdaMonster: {fileID: 1935092790}
   KIll: {fileID: 1940090357}
