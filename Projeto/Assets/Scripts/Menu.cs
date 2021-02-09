@@ -21,6 +21,7 @@ public class Menu : MonoBehaviour
     public void iniciarJogo()
     {
         SceneManager.LoadScene(cena);
+        
     }
     public void sairJogo()
     {

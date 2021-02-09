@@ -19,12 +19,18 @@ public class Temporizador : MonoBehaviour
     void Start()
     {
         stopTime = false;
+        this.segundos=ControladorDoGame.istancia.enviarTempoS();
+        this.minutos=ControladorDoGame.istancia.enviarTempoM();
+        minutos_txt.text = minutos.ToString("F0");
     }
     void Update()
     {
         if(minutos>=tempoMaximo)
         {
+            Debug.Log(minutos);
+            Debug.Log(tempoMaximo);
             stopTime = true;
+            //ControladorDoGame.istancia.resetarPontos();
         }   
         if (stopTime==false)
         {
@@ -52,11 +58,13 @@ public class Temporizador : MonoBehaviour
         else
         {
             stopTime = true;
-            ControladorDoGame.istancia.AtivarGameOver();
+            ControladorDoGame.istancia.AtivarGameOverBos();
             pausePainel.SetActive(true);
             Time.timeScale = 0f;
+            Destroy(gameObject);
          
         }
+        ControladorDoGame.istancia.receberTempo(segundos, minutos);
         
     }
     public static void Stop()

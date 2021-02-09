@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [Header("Jogador")]
 
+    public GameObject controler;
     public static Player istancia;
     public float ForcaPulo;
     public float Velocidade;
@@ -23,7 +24,6 @@ public class Player : MonoBehaviour
     private string cenaAtual;
     private bool agachado;
     private float movi;
-    private float TempoDash;
 
 
     [Header("Vidas")]
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     private bool Cora1;
     private bool Cora2;
     private bool cora3;
+    private bool checkP;
 
     [Header("Atirar")]
     public GameObject Tiro;
@@ -81,11 +82,12 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         Cora1 = true;
         Cora2 = true;
         cora3 = true;
         PFv = 2;
+        checkP = false;
         NaoMoverParado = true;
         Entrada.SetActive(true);
         // 
@@ -98,6 +100,11 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         //Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+       
+        if (ControladorDoGame.istancia.verificarCheckPoint())
+        {
+            transform.position = new Vector3(405.56f, -1.02f, 0);
+        }
 
     }
     void FixedUpdate()
@@ -107,9 +114,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (!pause)
         {
-
+            ControladorDoGame.istancia.salvar();
             Pular();
             if (Input.GetKey(KeyCode.X))
             {
@@ -145,7 +153,7 @@ public class Player : MonoBehaviour
             SalvarPosicao();
             Morte();
 
-            TempoDash += Time.deltaTime;
+            // TempoDash += Time.deltaTime;
             tempo += Time.deltaTime;
             PFv += Time.deltaTime;
 
@@ -397,7 +405,9 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "Aviso")
         {
+            controler.GetComponent<ControladorDoGame>().receberV();
             TempLockedIs = true;
+            ControladorDoGame.istancia.checkPoint();
         }
 
     }
@@ -419,7 +429,6 @@ public class Player : MonoBehaviour
             vidas++;
             tempo = 0f;
 
-            Debug.Log(vidas);
             if (vidas == 1)
             {
                 coracao1.SetActive(false);
@@ -443,10 +452,25 @@ public class Player : MonoBehaviour
             }
             if (vidas == 4)
             {
-                coracao4.SetActive(false);
-                ControladorDoGame.istancia.AtivarGameOver();
-                Temporizador.Stop();
-                Destroy(gameObject);
+                
+                if (controler.GetComponent<ControladorDoGame>().verificarCheckPoint())
+                {
+                    //Debug.Log("morreu pro boss");
+                    coracao4.SetActive(false);
+                    ControladorDoGame.istancia.AtivarGameOverBos();
+                    Temporizador.Stop();
+                    Destroy(gameObject);
+
+                }
+                else if(!controler.GetComponent<ControladorDoGame>().verificarCheckPoint())
+                {
+                    //Debug.Log("morreu sem ser pro boss");
+                    coracao4.SetActive(false);
+                    ControladorDoGame.istancia.AtivarGameOver();
+                    Temporizador.Stop();
+                    Destroy(gameObject);
+                    
+                }
             }
 
         }
