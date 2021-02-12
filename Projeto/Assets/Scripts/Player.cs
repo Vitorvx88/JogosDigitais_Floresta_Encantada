@@ -442,6 +442,10 @@ public class Player : MonoBehaviour
         {
             PlayerPrefs.SetInt("kkj", 2);
         }
+        if (collision.gameObject.tag == "AtivarEspinhos")
+        {
+            TomarDano();
+        }
 
     }
     private void OnTriggerExit2D(Collider2D collision)

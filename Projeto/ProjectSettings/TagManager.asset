@@ -22,6 +22,9 @@ TagManager:
   - Entrada
   - Aviso
   - Inicio
+  - AtivarEspinhos
+  - AtivarEspinhos2
+  - AtivarEspinhos3
   layers:
   - Default
   - TransparentFX
