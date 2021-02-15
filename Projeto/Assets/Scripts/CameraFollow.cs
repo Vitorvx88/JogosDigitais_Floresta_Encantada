@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     private float xMin= 0.2f;
     private float yMin= -2.2f;
     private float xMax= 470.73f;
-    private float yMax= 43.59f;
+    private float yMax= 56.36f;
     // Start is called before the first frame update
     void Start()
     {
