@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private string cenaAtual;
     private bool agachado;
     private float movi;
+    private bool chave;
 
 
     [Header("Vidas")]
@@ -90,6 +91,7 @@ public class Player : MonoBehaviour
     {
 
         ControladorDoGame.istancia.atualizarEstrelas();
+        chave = false;
         Cora1 = true;
         Cora2 = true;
         cora3 = true;
@@ -112,8 +114,8 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
         }
-       else
-           transform.position = new Vector3(-8.079f, -1.152f, 0);
+      // else
+        //   transform.position = new Vector3(-8.079f, -1.152f, 0); ////////////////////////////////////////////////////////////////////////////
 
     }
     void FixedUpdate()
@@ -346,6 +348,7 @@ public class Player : MonoBehaviour
             Velocidade = aux;
         }
     }
+
     void Abaixar()
     {
 
@@ -573,11 +576,19 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetFloat(cenaAtual + "X", transform.position.x);
         PlayerPrefs.SetFloat(cenaAtual + "Y", transform.position.y);
     }
+    public void ReceberKey()
+    {
+        this.chave = true;
+    }
+
     public void VoltarMenu()
     {
         SceneManager.LoadScene("Menu");
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
     }
-
+    public bool checarKey()
+    {
+        return this.chave;
+    }
 }
