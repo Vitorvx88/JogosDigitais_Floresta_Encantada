@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Bos_1 : MonoBehaviour
+public class Bos_2 : MonoBehaviour
 {
 
 
@@ -38,7 +38,7 @@ public class Bos_1 : MonoBehaviour
     void Start()
     {
         Isfragil = false;
-      
+
         isDano = false;
         player = false;
         PFv = 2;
@@ -50,14 +50,14 @@ public class Bos_1 : MonoBehaviour
         posicaoDoPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = gameObject.GetComponent<Animator>();
 
-       
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (posicaoDoPlayer.gameObject != null && Isfragil==false)
+
+        if (posicaoDoPlayer.gameObject != null && Isfragil == false)
         {
 
             if (isDano == true)
@@ -65,13 +65,13 @@ public class Bos_1 : MonoBehaviour
                 cronometro += Time.deltaTime;
                 if (cronometro >= 1.2f)
                 {
-                    anim.SetBool("Dano", false);
+                    //anim.SetBool("Dano", false);
                     isDano = false;
                     cronometro = 0f;
                 }
             }
 
-            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 249.74f/*446.15f /*&& PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f*/)
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 249.89f/*446.15f /*&& PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f*/)
             {
                 PFv += Time.deltaTime;
                 anim.SetBool("Andando", true);
@@ -80,7 +80,7 @@ public class Bos_1 : MonoBehaviour
                 player = true;
                 if (PFv >= tempoPRoxTiro && player)
                 {
-                   
+
                     Atirar();
                     PFv = 0;
                 }
@@ -89,34 +89,36 @@ public class Bos_1 : MonoBehaviour
             {
                 anim.SetBool("Andando", false);
             }
-            if ((transform.position.x - posicaoDoPlayer.position.x)>0 && !LadoDireito){
+            if ((transform.position.x - posicaoDoPlayer.position.x) > 0 && !LadoDireito)
+            {
                 Vire();
-               
+
                 PivorDoTiro.transform.eulerAngles = new Vector3(0, 0, 180);
             }
-            if((transform.position.x - posicaoDoPlayer.position.x) < 0 && LadoDireito){
+            if ((transform.position.x - posicaoDoPlayer.position.x) < 0 && LadoDireito)
+            {
                 Vire();
                 PivorDoTiro.transform.eulerAngles = new Vector3(0, 0, 0);
             }
-           
-            
+
+
 
 
         }
         if (Isfragil)
         {
             TimeHit += Time.deltaTime;
-            anim.SetBool("Fragil", true);
+            anim.SetBool("Dash", true);
             HitDam.SetActive(true);
             if (TimeHit >= 2.5f)
             {
                 HitDam.SetActive(false);
                 TimeHit = 0f;
-                anim.SetBool("Fragil", false);
+                anim.SetBool("Dash", false);
                 Isfragil = false;
             }
         }
-     
+
     }
     void SalvarPosicao()
     {
@@ -124,30 +126,29 @@ public class Bos_1 : MonoBehaviour
     }
     void Vire()
     {
-       
-        LadoDireito =! LadoDireito;
+
+        LadoDireito = !LadoDireito;
         Vector2 novoScale = new Vector2(transform.localScale.x * -1, transform.localScale.y);
         transform.localScale = novoScale;
- 
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 13f, ForceMode2D.Impulse);
             Jogador.GetComponent<Player>().TomarDano();
         }
         if (col.gameObject.tag == "Dead")
         {
-            PerderVida(7);
+            Isfragil = true;
         }
-     
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Espinhos")
+        if (collision.gameObject.tag == "Dead")
         {
             Isfragil = true;
         }
@@ -156,11 +157,11 @@ public class Bos_1 : MonoBehaviour
     {
 
         GameObject project = Instantiate(Tiro, PivorDoTiro.position, PivorDoTiro.rotation);
-       
+
     }
-       public void PerderVida(float dano)
+    public void PerderVida(float dano)
     {
-        anim.SetBool("Dano", true);
+       // anim.SetBool("Dano", true);
         Vida += -dano;
         checarVida();
         isDano = true;
@@ -169,12 +170,14 @@ public class Bos_1 : MonoBehaviour
     {
         if (Vida <= 0)
         {
-            anim.SetBool("Dano", false);
+           // anim.SetBool("Dano", false);
             anim.SetBool("Andando", false);
             ControladorDoGame.istancia.ReceberPontos(300);
             ControladorDoGame.istancia.atualizarPoints();
+            Jogador.GetComponent<Player>().ReceberKey();
+            Debug.Log("Recebeu a chave!");
             anim.SetTrigger("Morte");
-            Destroy(gameObject,0.80f);
+            Destroy(gameObject, 0.80f);
         }
     }
     public bool vidaB()
@@ -187,3 +190,5 @@ public class Bos_1 : MonoBehaviour
             return true;
     }
 }
+
+

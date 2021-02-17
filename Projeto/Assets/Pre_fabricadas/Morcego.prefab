@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4476124681634636103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8998631288748217105}
+  - component: {fileID: 4270430032130570635}
+  - component: {fileID: 963293898230374719}
+  m_Layer: 0
+  m_Name: HitKIll
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8998631288748217105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476124681634636103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8484842731405306975}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4270430032130570635
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476124681634636103}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.01840946, y: 0.11024798}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.35930276, y: 0.07186638}
+  m_EdgeRadius: 0
+--- !u!114 &963293898230374719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476124681634636103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f63e70eaf01a9141b09bb18a5773c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Morcergo: {fileID: 8484842731405306976}
 --- !u!1 &8484842731405306976
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,9 +83,10 @@ GameObject:
   - component: {fileID: 8484842731405306974}
   - component: {fileID: 8484842731405306977}
   - component: {fileID: 8484842731405306972}
+  - component: {fileID: 8030755122695073891}
   m_Layer: 0
   m_Name: Morcego
-  m_TagString: Untagged
+  m_TagString: Bos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +101,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 49.642, y: 1.907, z: 0}
   m_LocalScale: {x: 1.3331908, y: 1.9146711, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8998631288748217105}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,7 +188,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0054626465, y: -0.030422308}
+  m_Offset: {x: 0.0054626465, y: -0.099647716}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -126,5 +199,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1079602, y: 0.43549544}
+  m_Size: {x: 1.1079602, y: 0.2970446}
   m_EdgeRadius: 0
+--- !u!114 &8030755122695073891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8484842731405306976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779bdb939eb8fba429dca1c2715f84bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pontos: 20
+  controlador: {fileID: 0}
+  VelPass: 1
+  tempo: 0
+  Direita: 0
+  moverPass: 2
+  TrocarRotation: 0

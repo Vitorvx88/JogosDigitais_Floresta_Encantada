@@ -110,10 +110,10 @@ public class Player : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
        
-        if (PlayerPrefs.GetInt("kkj")==1)
+       /* if (PlayerPrefs.GetInt("kkj")==1)
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
-        }
+        }*/
       // else
         //   transform.position = new Vector3(-8.079f, -1.152f, 0); ////////////////////////////////////////////////////////////////////////////
 
@@ -130,6 +130,9 @@ public class Player : MonoBehaviour
         {
             ControladorDoGame.istancia.salvar();
             Pular();
+       
+                //Dash();
+            
             if (Input.GetKey(KeyCode.X))
             {
                 movi = 0;
@@ -253,9 +256,22 @@ public class Player : MonoBehaviour
     }
     void Dash()
     {
-        Vector3 novaPosicao = transform.position;
-        novaPosicao.x = PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x);
-        transform.position = novaPosicao;
+         
+        // rig.velocity = Vector2.down*5; Asa delta
+
+        // rig.velocity = new Vector2(100, rig.position.y);
+        if (Input.GetKey(KeyCode.M))
+        {
+            Vector3 novaPosicao = transform.position;
+            novaPosicao.x = PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) +0.3f;
+            transform.position = novaPosicao;
+        }
+        if (Input.GetKey(KeyCode.N))
+        {
+            Vector3 novaPosicao = transform.position;
+            novaPosicao.x = PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) - 0.3f;
+            transform.position = novaPosicao;
+        }
 
     }
 

@@ -266,6 +266,7 @@ MonoBehaviour:
   Direita: 1
   TrocarRotation: 1
   inicial: 1
+  Player: {fileID: 0}
   Pontos: 20
   TEst: {fileID: 1770183441767299910, guid: 93310d8434f2e174e913a0b964b3bef2, type: 3}
   DireitaMonster: {fileID: 133868500}

@@ -13,7 +13,7 @@ public class Rato : MonoBehaviour
     private bool istroca;
     public bool inicial;
     private Animator anim;
-   // public GameObject Player;
+    public GameObject Player;
     public int Pontos;
     public GameObject TEst;
 
@@ -74,11 +74,12 @@ public class Rato : MonoBehaviour
         if (colisao)
         {
             aux = true;
-            //Debug.Log("dano");
+           
 
             TEst.GetComponent<Player>().TomarDano();
-           
-           // ControladorDoGame.istancia.TEst(10);
+            Player.GetComponent<Player>().TomarDano();
+            //Debug.Log("dano");
+            // ControladorDoGame.istancia.TEst(10);
 
         }
         else
@@ -111,7 +112,9 @@ public class Rato : MonoBehaviour
             }
         }
         else
+        {
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12f, ForceMode2D.Impulse);
+        }
 
     }
 }

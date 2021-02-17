@@ -25,6 +25,7 @@ TagManager:
   - AtivarEspinhos
   - AtivarEspinhos2
   - AtivarEspinhos3
+  - Morc
   layers:
   - Default
   - TransparentFX
