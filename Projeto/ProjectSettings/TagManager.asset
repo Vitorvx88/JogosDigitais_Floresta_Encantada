@@ -28,6 +28,8 @@ TagManager:
   - Morc
   - Aviso2
   - AvisoAlavanca
+  - Aviso3
+  - Aviso3Bos
   layers:
   - Default
   - TransparentFX

@@ -194,6 +194,7 @@ public class Bos_1 : MonoBehaviour
             anim.SetBool("Andando", false);
             ControladorDoGame.istancia.ReceberPontos(300);
             ControladorDoGame.istancia.atualizarPoints();
+            ControladorDoGame.istancia.salvar();
             Porta.SetActive(false);
             anim.SetTrigger("Morte");
             Destroy(gameObject,0.80f);

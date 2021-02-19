@@ -23,6 +23,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(cena);
         
     }
+    public void iniciar(string lvl)
+    {
+        SceneManager.LoadScene(lvl);
+
+    }
     public void sairJogo()
     {
        // UnityEditor.EditorApplication.isPlaying = false;

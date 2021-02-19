@@ -175,6 +175,7 @@ public class Bos_2 : MonoBehaviour
             ControladorDoGame.istancia.ReceberPontos(300);
             ControladorDoGame.istancia.atualizarPoints();
             Jogador.GetComponent<Player>().ReceberKey();
+            ControladorDoGame.istancia.salvar();
             Debug.Log("Recebeu a chave!");
             anim.SetTrigger("Morte");
             Destroy(gameObject, 0.80f);

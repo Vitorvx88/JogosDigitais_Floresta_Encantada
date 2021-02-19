@@ -11,7 +11,7 @@ public class Temporizador : MonoBehaviour
     private float minutos = 0f;
     private float maximoSegundos = 60f;
     public static bool stopTime;
-    private int tempoMaximo=10000000;
+    private int tempoMaximo=20;
     private string aux1;
 
     public GameObject pausePainel;

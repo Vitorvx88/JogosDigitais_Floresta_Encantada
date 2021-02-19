@@ -33,7 +33,7 @@ public class ControladorDoGame : MonoBehaviour
        
         
 
-        if (PlayerPrefs.GetInt("kkj") == 1|| PlayerPrefs.GetInt("kkj_Lvl2") == 3)
+        if (PlayerPrefs.GetInt("kkj") ==1|| PlayerPrefs.GetInt("kkj") == 3||  PlayerPrefs.GetInt("kkj_Lvl2") == 3 || PlayerPrefs.GetInt("kkj_Lvl2") == 4 || PlayerPrefs.GetInt("kkj_Lvl3") == 3)
         {
           
             this.pontuacaoTotal = PlayerPrefs.GetInt("pontuacao");
@@ -45,12 +45,12 @@ public class ControladorDoGame : MonoBehaviour
             atualizarEstrelas();
 
         }
-        if (pontuacaoTotal > 0 )
-        {
-            monstros.SetActive(true);
-        }
-        else
-            monstros.SetActive(false);
+       // if (pontuacaoTotal > 0 )
+       // {
+       //     monstros.SetActive(true);
+       // }
+       // else
+          //  monstros.SetActive(false);
 
         {
 
@@ -104,7 +104,7 @@ public class ControladorDoGame : MonoBehaviour
         Cursor.visible = true;
         ControladorDoGame.istancia.resetarPontos();
         //Debug.Log("morreu sem ser pro boss 2");
-        monstros.SetActive(false);
+       // monstros.SetActive(false);
 
     }
     public void AtivarGameOverBos()

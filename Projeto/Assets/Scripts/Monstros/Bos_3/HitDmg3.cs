@@ -11,7 +11,7 @@ public class HitDmg3 : MonoBehaviour
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        vida = 68;
+        vida = 80;
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -20,9 +20,9 @@ public class HitDmg3 : MonoBehaviour
 
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12f, ForceMode2D.Impulse);
 
-            bosDAmage.GetComponent<Bos_2>().PerderVida(13.6f);
+            bosDAmage.GetComponent<Bos3>().PerderVida(/*13.6f*/80f);
 
-            PerderVida(13.6f);
+            PerderVida(/*13.6f*/80f);
             checarVida();
         }
 

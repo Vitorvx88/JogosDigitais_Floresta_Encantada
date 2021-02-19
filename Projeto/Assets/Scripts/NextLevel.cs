@@ -25,7 +25,7 @@ public class NextLevel : MonoBehaviour
             if (tempo >= 2)
             {
                 Imagem.SetActive(false);
-                PlayerPrefs.SetInt("kkj", 2);
+                PlayerPrefs.SetInt("kkj", 3);
                 SceneManager.LoadScene(Level);
 
             }
@@ -36,6 +36,7 @@ public class NextLevel : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
+         
             Go = true;
         }
     }

@@ -13,6 +13,10 @@ public class Bos3 : MonoBehaviour
     private float PFv;
     private bool player;
 
+    [Header("Explorador")]
+    public GameObject Ativar1;
+    public GameObject Ativar2;
+
     [Header("Atributos_Basicos")]
     private string cenaAtual;
     public static Bos_1 istancia;
@@ -28,6 +32,12 @@ public class Bos3 : MonoBehaviour
     public GameObject HitDam;
     private bool Isfragil;
     private float TimeHit;
+    public GameObject Explodir;
+    private bool unica;
+    private bool unica1;
+    private bool unica2;
+    private bool unica3;
+    private bool unica4;
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,6 +53,11 @@ public class Bos3 : MonoBehaviour
         Vida = 80;
         cronometro = 0f;
         HitDam.SetActive(false);
+        unica3 = true;
+        unica2 = true;
+        unica1 = true;
+        unica = true;
+        unica4 = true;
 
 
         posicaoDoPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -103,17 +118,51 @@ public class Bos3 : MonoBehaviour
 
 
         }
+        unica3 = true;
+        unica2 = true;
+        unica1 = true;
+        unica = true;
+        unica4 = true;
         if (Isfragil)
         {
             TimeHit += Time.deltaTime;
-            anim.SetBool("Dash", true);
-            HitDam.SetActive(true);
-            if (TimeHit >= 2.5f)
+            if (TimeHit>=0.1 && unica)
+            {
+                anim.SetBool("Vull", true);
+                HitDam.SetActive(true);
+                unica = false;
+            }
+            
+            if (TimeHit >= 2f && unica1)
+            { 
+                HitDam.SetActive(false);
+                unica1 = false;
+
+
+            }
+            if (TimeHit >= 2.5f && unica2)
             {
                 HitDam.SetActive(false);
+                anim.SetBool("Vull", false);
+                anim.SetBool("Explodir", true);
+                unica2 = false;
+            }
+
+            if (TimeHit >= 3.5f && unica3)
+            {
+                anim.SetBool("Explodir", false);
+                Explodir.SetActive(true);
+                unica3= false;
+
+            }
+            if (TimeHit >= 4.5f && unica4)
+            {
+         
+                Explodir.SetActive(false);
                 TimeHit = 0f;
-                anim.SetBool("Dash", false);
+                unica4 = false;
                 Isfragil = false;
+                
             }
         }
 
@@ -169,12 +218,14 @@ public class Bos3 : MonoBehaviour
         if (Vida <= 0)
         {
             // anim.SetBool("Dano", false);
+            Ativar1.SetActive(false);
+            Ativar2.SetActive(false);
             anim.SetBool("Andando", false);
             ControladorDoGame.istancia.ReceberPontos(300);
             ControladorDoGame.istancia.atualizarPoints();
             Jogador.GetComponent<Player>().ReceberKey();
             Debug.Log("Recebeu a chave!");
-            anim.SetTrigger("Morte");
+            anim.SetTrigger("Dead");
             Destroy(gameObject, 0.80f);
         }
     }
