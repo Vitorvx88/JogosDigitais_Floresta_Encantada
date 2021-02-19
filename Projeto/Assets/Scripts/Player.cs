@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-          //  transform.position = new Vector3(-8.079f, -1.152f, 0);
+           transform.position = new Vector3(-5.99f, -1.152f, 0);
             //PlayerPrefs.SetInt("kkj", 2);
             ////////////////////////////////////////////////////////////////////////////
         }

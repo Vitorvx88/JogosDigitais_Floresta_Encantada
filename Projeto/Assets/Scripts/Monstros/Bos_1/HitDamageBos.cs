@@ -21,9 +21,9 @@ public class HitDamageBos : MonoBehaviour
 
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12f, ForceMode2D.Impulse);
 
-            bosDAmage.GetComponent<Bos_1>().PerderVida(40f);
+            bosDAmage.GetComponent<Bos_1>().PerderVida(6f);
 
-            PerderVida(40);
+            PerderVida(6);
             checarVida();
         }
 
