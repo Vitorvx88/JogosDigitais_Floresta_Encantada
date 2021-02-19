@@ -79,7 +79,7 @@ public class Inim : MonoBehaviour
         VelPass = 0;
         ControladorDoGame.istancia.ReceberPontos(Pontos);
         anim.SetTrigger("RatoKill");
-        Destroy(gameObject, 0.34f);
+        Destroy(gameObject, 0.24f);
     }
 
     void OnCollisionEnter2D(Collision2D col)
