@@ -13,8 +13,8 @@ public class HitMOrcego : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Bom dia!");
-            col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12f, ForceMode2D.Impulse);
+            //Debug.Log("Bom dia!");
+            col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 15f, ForceMode2D.Impulse);
             Morcergo.GetComponent<Morcego>().Dead();
         }
 

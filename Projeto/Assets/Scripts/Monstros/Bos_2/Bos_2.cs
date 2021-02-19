@@ -71,7 +71,7 @@ public class Bos_2 : MonoBehaviour
                 }
             }
 
-            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 249.89f/*446.15f /*&& PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f*/)
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 249.89f && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 267.25f)
             {
                 PFv += Time.deltaTime;
                 anim.SetBool("Andando", true);

@@ -8,8 +8,8 @@ public class CameraFollow : MonoBehaviour
     private Transform pivor;
     public bool maxMin;
     private float xMin= 0.2f;
-    private float yMin= -2.2f;
-    private float xMax= 470.73f;
+    private float yMin= -6.3f;
+    private float xMax= 470.6f;
     private float yMax= 56.36f;
     // Start is called before the first frame update
     void Start()

@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779bdb939eb8fba429dca1c2715f84bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pontos: 20
+  Pontos: 25
   controlador: {fileID: 0}
   VelPass: 1
   tempo: 0

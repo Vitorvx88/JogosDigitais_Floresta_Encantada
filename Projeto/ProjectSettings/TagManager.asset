@@ -26,6 +26,8 @@ TagManager:
   - AtivarEspinhos2
   - AtivarEspinhos3
   - Morc
+  - Aviso2
+  - AvisoAlavanca
   layers:
   - Default
   - TransparentFX

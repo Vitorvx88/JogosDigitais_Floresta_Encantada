@@ -30,6 +30,10 @@ public class Bos_1 : MonoBehaviour
     public GameObject HitDam;
     private bool Isfragil;
     private float TimeHit;
+
+    [Header("Porta")]
+    public GameObject Porta;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,7 +42,7 @@ public class Bos_1 : MonoBehaviour
     void Start()
     {
         Isfragil = false;
-      
+        Porta.SetActive(true);
         isDano = false;
         player = false;
         PFv = 2;
@@ -56,7 +60,6 @@ public class Bos_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (posicaoDoPlayer.gameObject != null && Isfragil==false)
         {
 
@@ -71,7 +74,7 @@ public class Bos_1 : MonoBehaviour
                 }
             }
 
-            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 249.74f/*446.15f /*&& PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f*/)
+            if (PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) >= 446.15f && PlayerPrefs.GetFloat(cenaAtual + "X", transform.position.x) <= 474.19f)
             {
                 PFv += Time.deltaTime;
                 anim.SetBool("Andando", true);
@@ -98,25 +101,43 @@ public class Bos_1 : MonoBehaviour
                 Vire();
                 PivorDoTiro.transform.eulerAngles = new Vector3(0, 0, 0);
             }
-           
-            
 
+
+           
 
         }
-        if (Isfragil)
+        if(posicaoDoPlayer.gameObject != null)
         {
-            TimeHit += Time.deltaTime;
-            anim.SetBool("Fragil", true);
-            HitDam.SetActive(true);
-            if (TimeHit >= 2.5f)
+            if (Isfragil)
             {
-                HitDam.SetActive(false);
-                TimeHit = 0f;
-                anim.SetBool("Fragil", false);
-                Isfragil = false;
+                TimeHit += Time.deltaTime;
+                anim.SetBool("Fragil", true);
+                HitDam.SetActive(true);
+
+
+                if (TimeHit >= 2.5f)
+                {
+                    HitDam.SetActive(false);
+                    TimeHit = 0f;
+                    anim.SetBool("Fragil", false);
+                    Isfragil = false;
+                }
             }
         }
-     
+        if (posicaoDoPlayer.gameObject == null)
+        {
+            HitDam.SetActive(false);
+            anim.SetBool("Dano", false);
+            anim.SetBool("Andando", false);
+            ControladorDoGame.istancia.ReceberPontos(300);
+            ControladorDoGame.istancia.atualizarPoints();
+            Porta.SetActive(false);
+            anim.SetTrigger("Morte");
+            Destroy(gameObject, 0.80f);
+        }
+
+
+
     }
     void SalvarPosicao()
     {
@@ -173,6 +194,7 @@ public class Bos_1 : MonoBehaviour
             anim.SetBool("Andando", false);
             ControladorDoGame.istancia.ReceberPontos(300);
             ControladorDoGame.istancia.atualizarPoints();
+            Porta.SetActive(false);
             anim.SetTrigger("Morte");
             Destroy(gameObject,0.80f);
         }

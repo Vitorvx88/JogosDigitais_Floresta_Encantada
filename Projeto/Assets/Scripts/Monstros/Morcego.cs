@@ -18,7 +18,7 @@ public class Morcego : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
-        Pontos = 0;
+        
     }
 
     // Update is called once per frame
@@ -41,12 +41,25 @@ public class Morcego : MonoBehaviour
             tempo = 0;
         }
 
-        }
+    }
+    public void Parar()
+    {
+        VelPass = 0;
+    }
 
     public void Dead()
     {
+        Parar();
         ControladorDoGame.istancia.ReceberPontos(Pontos);
-        anim.SetTrigger("kill");
-        Destroy(gameObject, 0.5f);
+        anim.SetTrigger("Kill");
+        Destroy(gameObject, 0.30f);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Dead")
+        {
+            Dead();
+        }
+      
     }
 }

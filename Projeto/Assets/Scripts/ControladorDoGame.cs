@@ -33,7 +33,7 @@ public class ControladorDoGame : MonoBehaviour
        
         
 
-        if (PlayerPrefs.GetInt("kkj") == 1)
+        if (PlayerPrefs.GetInt("kkj") == 1|| PlayerPrefs.GetInt("kkj_Lvl2") == 3)
         {
           
             this.pontuacaoTotal = PlayerPrefs.GetInt("pontuacao");
@@ -55,6 +55,10 @@ public class ControladorDoGame : MonoBehaviour
         {
 
         }
+    }
+    private void Update()
+    {
+        //salvar();
     }
     public void resetarPontos()
     {

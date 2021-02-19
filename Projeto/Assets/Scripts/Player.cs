@@ -48,6 +48,12 @@ public class Player : MonoBehaviour
     public float ProxTiro;
     private float PFv;
 
+    [Header("Porta Boss")]
+    public GameObject Block1;
+    public GameObject Block2;
+    public GameObject Block3;
+    public GameObject Porta;
+    public GameObject AvisoAlavanca;
 
 
     [Header("Painel e Menu")]
@@ -89,7 +95,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //PlayerPrefs.SetInt("Unica", 1);
+        //PlayerPrefs.SetInt("kkj_Lvl2", 2);
+        //PlayerPrefs.SetInt("kkj", 2);
         ControladorDoGame.istancia.atualizarEstrelas();
         chave = false;
         Cora1 = true;
@@ -109,13 +117,25 @@ public class Player : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         //Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-       
-       /* if (PlayerPrefs.GetInt("kkj")==1)
+
+        if (PlayerPrefs.GetInt("kkj") == 1)
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
-        }*/
-      // else
-        //   transform.position = new Vector3(-8.079f, -1.152f, 0); ////////////////////////////////////////////////////////////////////////////
+        }
+        if (PlayerPrefs.GetInt("kkj_Lvl2") == 3)
+        {
+            transform.position = new Vector3(237.2f, 51.24f, 0);
+            Block1.SetActive(true);
+            Block2.SetActive(true);
+            Block3.SetActive(true);
+            Porta.SetActive(false);
+        }
+        else
+        {
+          //  transform.position = new Vector3(-8.079f, -1.152f, 0);
+            //PlayerPrefs.SetInt("kkj", 2);
+            ////////////////////////////////////////////////////////////////////////////
+        }
 
     }
     void FixedUpdate()
@@ -457,13 +477,24 @@ public class Player : MonoBehaviour
             ControladorDoGame.istancia.checkPoint();
             PlayerPrefs.SetInt("kkj", 1);
         }
-        if(collision.gameObject.tag == "Inicio")
+        if (collision.gameObject.tag == "Aviso2")
+        {
+            TempLockedIs = true;
+            ControladorDoGame.istancia.checkPoint();
+            PlayerPrefs.SetInt("kkj_Lvl2", 3);
+            PlayerPrefs.SetInt("Unica", 0);
+        }
+        if (collision.gameObject.tag == "Inicio")
         {
             PlayerPrefs.SetInt("kkj", 2);
         }
         if (collision.gameObject.tag == "AtivarEspinhos")
         {
             TomarDano();
+        }
+        if(collision.gameObject.tag == "AvisoAlavanca")
+        {
+            AvisoAlavanca.GetComponent<AtivarAvisoAlavanca>().UnicaVez();
         }
 
     }
@@ -509,7 +540,7 @@ public class Player : MonoBehaviour
             if (vidas == 4)
             {
                 
-                if (PlayerPrefs.GetInt("kkj")==1)
+                if (PlayerPrefs.GetInt("kkj")==1 || PlayerPrefs.GetInt("kkj_Lvl2") == 3)
                 {
                     //Debug.Log("morreu pro boss");
                     coracao4.SetActive(false);
