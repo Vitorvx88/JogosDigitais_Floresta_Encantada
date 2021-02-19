@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     private bool agachado;
     private float movi;
     private bool chave;
+    private AudioSource SoundJump;
+   
 
 
     [Header("Vidas")]
@@ -77,14 +79,17 @@ public class Player : MonoBehaviour
     private bool TempLockedIs;
     private bool unica;
     public GameObject Bloq;
+    private int a;
 
     void Awake()
     {
         // Cursor.visible = false;
-        
+        SoundJump = GetComponent<AudioSource>();
+       
         cronometro = 0f;
         TempLocked = 0f;
         isDano = false;
+        a = 7;
         unica = true;
         cenaAtual = SceneManager.GetActiveScene().name;
         Texto.SetActive(false);
@@ -130,11 +135,11 @@ public class Player : MonoBehaviour
         
       
 
-        if (PlayerPrefs.GetInt("kkj") == 1)
+         if (PlayerPrefs.GetInt("kkj") == 1)
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
         }
-        if (PlayerPrefs.GetInt("kkj_Lvl2") == 3)
+        else if(PlayerPrefs.GetInt("kkj_Lvl2") == 3)
         {
             transform.position = new Vector3(237.2f, 51.24f, 0);
             Block1.SetActive(true);
@@ -143,17 +148,15 @@ public class Player : MonoBehaviour
             Porta.SetActive(false);
             Bloq.SetActive(false);
         }
-        if (PlayerPrefs.GetInt("kkj_Lvl3") == 3)
+        else if(PlayerPrefs.GetInt("kkj_Lvl3") == 3)
         {
             Bloq.SetActive(true);
             transform.position = new Vector3(197.94f, 32.12f, 0);
         }
-        else
+       
+        else if(a==7)
         {
             transform.position = new Vector3(-5.99f, -1.152f, 0);
-            //PlayerPrefs.SetInt("kkj", 2);
-           
-            ////////////////////////////////////////////////////////////////////////////
         }
 
     }
@@ -164,7 +167,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Debug.Log(PlayerPrefs.GetInt("kkj"));
         if (!pause)
         {
             ControladorDoGame.istancia.salvar();
@@ -321,16 +324,16 @@ public class Player : MonoBehaviour
         // Debug.Log(movi);
 
         rig.velocity = new Vector2(movi * Velocidade, rig.velocity.y);
-
+        
         if (movi > 0f)
         {
-
+           
             anim.SetBool("Andando", true);
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
         if (movi < 0f)
         {
-
+         
             anim.SetBool("Andando", true);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
@@ -368,7 +371,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && agachado)
         {
-
+            SoundJump.Play();
             if (!emPulo)
             {
                 rig.AddForce(new Vector2(0f, ForcaPulo * 1.2f), ForceMode2D.Impulse);
@@ -573,7 +576,7 @@ public class Player : MonoBehaviour
             if (vidas == 4)
             {
                 
-                if (PlayerPrefs.GetInt("kkj")==1 || PlayerPrefs.GetInt("kkj_Lvl2") == 3|| PlayerPrefs.GetInt("kkj") == 3 || PlayerPrefs.GetInt("kkj") == 4)
+                if (PlayerPrefs.GetInt("kkj" )==1 || PlayerPrefs.GetInt("kkj_Lvl2") == 3|| PlayerPrefs.GetInt("kkj") == 3 || PlayerPrefs.GetInt("kkj") == 4)
                 {
                     //Debug.Log("morreu pro boss");
                     coracao4.SetActive(false);
@@ -585,7 +588,7 @@ public class Player : MonoBehaviour
                 else if(PlayerPrefs.GetInt("kkj") == 2)
                 {
                     //Debug.Log("morreu sem ser pro boss");
-                    PlayerPrefs.SetInt("Kkj", 3);
+                   // PlayerPrefs.SetInt("Kkj", 3);
                     coracao4.SetActive(false);
                     ControladorDoGame.istancia.AtivarGameOver();
 
