@@ -8,8 +8,10 @@ public class HitDMG : MonoBehaviour
 
     private float vida;
     private Rigidbody2D rig;
+    private AudioSource SoundJ;
     private void Start()
     {
+        SoundJ = GetComponent<AudioSource>();
         rig = GetComponent<Rigidbody2D>();
         vida = 68;
     }
@@ -29,6 +31,7 @@ public class HitDMG : MonoBehaviour
     }
     void PerderVida(float vida)
     {
+        SoundJ.Play();
         this.vida += -vida;
     }
     void checarVida()

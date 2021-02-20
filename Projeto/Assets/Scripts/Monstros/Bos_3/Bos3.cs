@@ -38,6 +38,7 @@ public class Bos3 : MonoBehaviour
     private bool unica2;
     private bool unica3;
     private bool unica4;
+    private AudioSource SoundJ;
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,7 +47,7 @@ public class Bos3 : MonoBehaviour
     void Start()
     {
         Isfragil = false;
-
+        SoundJ = GetComponent<AudioSource>();
         isDano = false;
         player = false;
         PFv = 2;
@@ -217,6 +218,7 @@ public class Bos3 : MonoBehaviour
     {
         if (Vida <= 0)
         {
+            SoundJ.Play();
             // anim.SetBool("Dano", false);
             Ativar1.SetActive(false);
             Ativar2.SetActive(false);

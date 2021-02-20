@@ -8,8 +8,10 @@ public class HitDmg3 : MonoBehaviour
 
     private float vida;
     private Rigidbody2D rig;
+    private AudioSource SoundJ;
     private void Start()
     {
+        SoundJ = GetComponent<AudioSource>();
         rig = GetComponent<Rigidbody2D>();
         vida = 80;
     }
@@ -20,15 +22,16 @@ public class HitDmg3 : MonoBehaviour
 
             col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 12f, ForceMode2D.Impulse);
 
-            bosDAmage.GetComponent<Bos3>().PerderVida(/*13.6f*/80f);
+            bosDAmage.GetComponent<Bos3>().PerderVida(13.6f);
 
-            PerderVida(/*13.6f*/80f);
+            PerderVida(13.6f);
             checarVida();
         }
 
     }
     void PerderVida(float vida)
     {
+        SoundJ.Play();
         this.vida += -vida;
     }
     void checarVida()

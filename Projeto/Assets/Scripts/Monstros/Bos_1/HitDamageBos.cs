@@ -9,8 +9,10 @@ public class HitDamageBos : MonoBehaviour
 
     private float vida;
     private Rigidbody2D rig;
+    private AudioSource SoundJ;
     private void Start()
     {
+        SoundJ = GetComponent<AudioSource>();
         rig = GetComponent<Rigidbody2D>();
         vida = 50;
     }
@@ -30,12 +32,14 @@ public class HitDamageBos : MonoBehaviour
     }
     void PerderVida(float vida)
     {
+        SoundJ.Play();
         this.vida += -vida;
     }
     void checarVida()
     {
         if(this.vida <= 0)
         {
+          
             Destroy(gameObject);
         }
     }

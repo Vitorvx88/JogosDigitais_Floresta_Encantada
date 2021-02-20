@@ -12,13 +12,13 @@ public class Morcego : MonoBehaviour
     public float moverPass;
     public bool TrocarRotation;
     private bool istroca;
-
+    private AudioSource SoundJ;
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        
+        SoundJ = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,6 +50,7 @@ public class Morcego : MonoBehaviour
     public void Dead()
     {
         Parar();
+        SoundJ.Play();
         ControladorDoGame.istancia.ReceberPontos(Pontos);
         anim.SetTrigger("Kill");
         Destroy(gameObject, 0.30f);

@@ -371,9 +371,10 @@ public class Player : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && agachado)
         {
-            SoundJump.Play();
+             
             if (!emPulo)
             {
+                SoundJump.Play();
                 rig.AddForce(new Vector2(0f, ForcaPulo * 1.2f), ForceMode2D.Impulse);
                 puloDuplo = true;
 
@@ -384,6 +385,7 @@ public class Player : MonoBehaviour
             {
                 if (puloDuplo)
                 {
+                    SoundJump.Play();
                     rig.AddForce(new Vector2(0f, (ForcaPulo - 2) * 0.5f), ForceMode2D.Impulse);
                     puloDuplo = false;
                 }

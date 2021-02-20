@@ -30,6 +30,7 @@ public class Bos_2 : MonoBehaviour
     public GameObject HitDam;
     private bool Isfragil;
     private float TimeHit;
+    private AudioSource SoundJ;
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,7 +39,7 @@ public class Bos_2 : MonoBehaviour
     void Start()
     {
         Isfragil = false;
-
+        SoundJ = GetComponent<AudioSource>();
         isDano = false;
         player = false;
         PFv = 2;
@@ -170,7 +171,8 @@ public class Bos_2 : MonoBehaviour
     {
         if (Vida <= 0)
         {
-           // anim.SetBool("Dano", false);
+            // anim.SetBool("Dano", false);
+            SoundJ.Play();
             anim.SetBool("Andando", false);
             ControladorDoGame.istancia.ReceberPontos(300);
             ControladorDoGame.istancia.atualizarPoints();

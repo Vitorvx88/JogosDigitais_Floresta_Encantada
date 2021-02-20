@@ -21,10 +21,12 @@ public class Sapo : MonoBehaviour
     private bool colisao2;
     public int Pontos;
     private bool aux;
+ private AudioSource SoundJ;
     // Start is called before the first frame update
     private void Start()
     {
         aux = false;
+        SoundJ = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
     private void Update()
@@ -64,6 +66,7 @@ public class Sapo : MonoBehaviour
     }
     public void Dead()
     {
+        SoundJ.Play();
         ControladorDoGame.istancia.ReceberPontos(Pontos);
         anim.SetTrigger("kill");
         Destroy(gameObject, 0.25f);

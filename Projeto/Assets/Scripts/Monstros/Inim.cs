@@ -20,15 +20,17 @@ public class Inim : MonoBehaviour
     public Transform EsquerdaMonster;
     public Transform KIll;
     public LayerMask layer;
-    private bool aux;
+   // private bool aux;
     private bool colisao;
     public GameObject Hit;
+    private AudioSource SoundJ;
 
 
 
     private void Start()
     {
-        aux = false;
+        SoundJ = GetComponent<AudioSource>();
+        //aux = false;
         if (inicial)
         {
             transform.localScale = new Vector2(4.4f, transform.localScale.y);
@@ -76,6 +78,7 @@ public class Inim : MonoBehaviour
     }
     public void Dead()
     {
+        SoundJ.Play();
         VelPass = 0;
         ControladorDoGame.istancia.ReceberPontos(Pontos);
         anim.SetTrigger("RatoKill");

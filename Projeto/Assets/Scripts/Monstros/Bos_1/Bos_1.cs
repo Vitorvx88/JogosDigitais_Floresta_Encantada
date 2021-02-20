@@ -30,6 +30,7 @@ public class Bos_1 : MonoBehaviour
     public GameObject HitDam;
     private bool Isfragil;
     private float TimeHit;
+    private AudioSource SoundJ;
 
     [Header("Porta")]
     public GameObject Porta;
@@ -41,6 +42,7 @@ public class Bos_1 : MonoBehaviour
     }
     void Start()
     {
+        SoundJ = GetComponent<AudioSource>();
         Isfragil = false;
         Porta.SetActive(true);
         isDano = false;
@@ -190,6 +192,7 @@ public class Bos_1 : MonoBehaviour
     {
         if (Vida <= 0)
         {
+            SoundJ.Play();
             anim.SetBool("Dano", false);
             anim.SetBool("Andando", false);
             ControladorDoGame.istancia.ReceberPontos(300);

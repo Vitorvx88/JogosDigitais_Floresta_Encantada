@@ -23,11 +23,13 @@ public class Rato : MonoBehaviour
     public LayerMask layer;
     private bool aux;
     private bool colisao;
+    private AudioSource SoundJ;
 
 
 
     private void Start()
     {
+        SoundJ = GetComponent<AudioSource>();
         aux = false;
         if (inicial)
         {
@@ -89,6 +91,7 @@ public class Rato : MonoBehaviour
     }
     public void Dead()
     {
+        SoundJ.Play();
         VelPass = 0;
         ControladorDoGame.istancia.ReceberPontos(Pontos);
         anim.SetTrigger("RatoKill");
