@@ -115,7 +115,8 @@ public class Player : MonoBehaviour
         Cora2 = true;
         cora3 = true;
         PFv = 2;
-       
+        Debug.Log(PlayerPrefs.GetInt("kkj"));
+
         NaoMoverParado = true;
         Entrada.SetActive(true);
         // 
@@ -170,7 +171,7 @@ public class Player : MonoBehaviour
         //Debug.Log(PlayerPrefs.GetInt("kkj"));
         if (!pause)
         {
-            ControladorDoGame.istancia.salvar();
+            
             Pular();
        
                 //Dash();

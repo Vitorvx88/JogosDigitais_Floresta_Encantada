@@ -13940,6 +13940,11 @@ PrefabInstance:
       objectReference: {fileID: 12136188}
     - target: {fileID: 4415513693375986264, guid: 303cf7a47c8f31a439759100c830edad,
         type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 12136188}
+    - target: {fileID: 4415513693375986264, guid: 303cf7a47c8f31a439759100c830edad,
+        type: 3}
       propertyPath: VelPass
       value: 3
       objectReference: {fileID: 0}
@@ -39070,6 +39075,11 @@ PrefabInstance:
       propertyPath: TEst
       value: 
       objectReference: {fileID: 12136188}
+    - target: {fileID: 4415513693375986264, guid: 303cf7a47c8f31a439759100c830edad,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 12136188}
     - target: {fileID: 5951145942917840540, guid: 303cf7a47c8f31a439759100c830edad,
         type: 3}
       propertyPath: m_Name
@@ -39143,7 +39153,7 @@ PrefabInstance:
         type: 3}
       propertyPath: TEst
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 12136188}
     - target: {fileID: 4415513693375986264, guid: 303cf7a47c8f31a439759100c830edad,
         type: 3}
       propertyPath: Player
