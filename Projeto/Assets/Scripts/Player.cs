@@ -106,9 +106,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("Unica", 1);
-        //PlayerPrefs.SetInt("kkj_Lvl2", 5);
-      // PlayerPrefs.SetInt("kkj", 2);
-        //PlayerPrefs.SetInt("kkj_Lvl3", 5);
+       // PlayerPrefs.SetInt("kkj_Lvl2", 5);
+      //PlayerPrefs.SetInt("kkj", 2);
+       // PlayerPrefs.SetInt("kkj_Lvl3", 5);
         ControladorDoGame.istancia.atualizarEstrelas();
         chave = false;
         Cora1 = true;
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
        
         else if(a==7)
         {
-            //transform.position = new Vector3(-5.99f, -1.152f, 0);
+            transform.position = new Vector3(-5.99f, -1.152f, 0);
         }
 
     }
