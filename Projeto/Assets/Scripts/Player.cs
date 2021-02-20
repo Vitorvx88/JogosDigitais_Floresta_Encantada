@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PlayerPrefs.SetInt("Unica", 1);
+        PlayerPrefs.SetInt("Unica", 1);
         //PlayerPrefs.SetInt("kkj_Lvl2", 5);
       // PlayerPrefs.SetInt("kkj", 2);
         //PlayerPrefs.SetInt("kkj_Lvl3", 5);
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
        
         else if(a==7)
         {
-            transform.position = new Vector3(-5.99f, -1.152f, 0);
+            //transform.position = new Vector3(-5.99f, -1.152f, 0);
         }
 
     }
