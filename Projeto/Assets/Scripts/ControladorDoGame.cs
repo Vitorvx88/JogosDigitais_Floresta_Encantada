@@ -65,8 +65,6 @@ public class ControladorDoGame : MonoBehaviour
         //Debug.Log("res");
         PlayerPrefs.SetInt("pontuacao", 0);
         PlayerPrefs.SetInt("pontuacaoEstrela", 5);
-        PlayerPrefs.SetFloat("tempoS", 0f);
-        PlayerPrefs.SetFloat("tempoM", 0f);
     }
     public void salvar()
     {

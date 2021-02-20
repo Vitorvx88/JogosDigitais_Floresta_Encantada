@@ -26,6 +26,7 @@ public class NextLevel : MonoBehaviour
             {
                 Imagem.SetActive(false);
                 PlayerPrefs.SetInt("kkj", 3);
+                ControladorDoGame.istancia.salvar();
                 Debug.Log(PlayerPrefs.GetInt("kkj"));
                 SceneManager.LoadScene(Level);
 
