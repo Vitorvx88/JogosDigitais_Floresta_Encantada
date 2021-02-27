@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public string cena;
+    public GameObject KEYS;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,16 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(lvl);
 
+    }
+
+    public void KeysOn()
+    {
+        KEYS.SetActive(true);
+    }
+
+    public void KeysOFF()
+    {
+        KEYS.SetActive(false);
     }
     public void sairJogo()
     {

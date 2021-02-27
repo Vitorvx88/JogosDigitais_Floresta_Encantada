@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
     {
         PlayerPrefs.SetInt("Unica", 1);
        // PlayerPrefs.SetInt("kkj_Lvl2", 5);
-      //PlayerPrefs.SetInt("kkj", 2);
+         //PlayerPrefs.SetInt("kkj", 2);
        // PlayerPrefs.SetInt("kkj_Lvl3", 5);
         ControladorDoGame.istancia.atualizarEstrelas();
         chave = false;
