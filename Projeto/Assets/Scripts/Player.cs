@@ -168,7 +168,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(PlayerPrefs.GetInt("kkj"));
+        //Debug.Log(PlayerPrefs.GetInt("kkj_Lvl3"));
         if (!pause)
         {
             
@@ -504,6 +504,10 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "Aviso2")
         {
+            if (ControladorDoGame.istancia.pontuacaoEstrela < 5)
+            {
+                ControladorDoGame.istancia.attEstrela(5);
+            }
             PlayerPrefs.SetInt("kkj", 2);
             TempLockedIs = true;
             ControladorDoGame.istancia.checkPoint();
@@ -511,8 +515,12 @@ public class Player : MonoBehaviour
             PlayerPrefs.SetInt("Unica", 0);
         }
         if (collision.gameObject.tag == "Aviso3")
-        {   
+        {
             //TempLockedIs = true;
+            if (ControladorDoGame.istancia.pontuacaoEstrela < 5)
+            {
+                ControladorDoGame.istancia.attEstrela(5);
+            }
             ControladorDoGame.istancia.checkPoint();
             PlayerPrefs.SetInt("kkj_Lvl3", 3);
             
