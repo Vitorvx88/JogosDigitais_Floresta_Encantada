@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class Temporizador : MonoBehaviour
     private float minutos = 0f;
     private float maximoSegundos = 60f;
     public static bool stopTime;
+    public static bool dead;
     private int tempoMaximo=20;
     private string aux1;
 
@@ -19,6 +21,7 @@ public class Temporizador : MonoBehaviour
     void Start()
     {
         stopTime = false;
+        dead = false;
         this.segundos=ControladorDoGame.istancia.enviarTempoS();
         this.minutos=ControladorDoGame.istancia.enviarTempoM();
         minutos_txt.text = minutos.ToString("F0");
@@ -58,11 +61,17 @@ public class Temporizador : MonoBehaviour
         else
         {
             stopTime = true;
+           
+       
+            SceneManager.LoadScene("Derrota");
+
+        }
+        if (dead == true)
+        {
             ControladorDoGame.istancia.AtivarGameOverBos();
-            pausePainel.SetActive(true);
-            Time.timeScale = 0f;
-            Destroy(gameObject);
-         
+             pausePainel.SetActive(true);
+             Time.timeScale = 0f;
+            // Destroy(gameObject);
         }
         ControladorDoGame.istancia.receberTempo(segundos, minutos);
         
@@ -70,5 +79,9 @@ public class Temporizador : MonoBehaviour
     public static void Stop()
     {
         stopTime = true;
+    }
+    public static void Morreu()
+    {
+        dead = true;
     }
 }

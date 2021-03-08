@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TextosCine : MonoBehaviour
@@ -9,18 +11,19 @@ public class TextosCine : MonoBehaviour
     public GameObject Explorador;
     public GameObject Jogador;
     public GameObject joia;
-    private float tempo;
-    public GameObject texto1;
+    
+    public GameObject dialog;
+    public GameObject dialog2;
     public GameObject Imagem;
-    public GameObject texto3;
+    public Image profile;
+    private float tempo;
     public string Level;
+
 
     void Start()
     {
         tempo = 0;
-        texto1.SetActive(false);
-        Imagem.SetActive(false);
-        texto3.SetActive(false);
+
         Jogador.SetActive(false);
     }
 
@@ -30,12 +33,16 @@ public class TextosCine : MonoBehaviour
         tempo += Time.deltaTime;
         if (tempo >= 8)
         {
-            texto1.SetActive(true);
+          
+          dialog.SetActive(true);
+          
+
+
 
         }
         if (tempo >= 17f)
         {
-            texto1.SetActive(false);
+            dialog.SetActive(false);
             Imagem.SetActive(true);
 
         }
@@ -48,11 +55,12 @@ public class TextosCine : MonoBehaviour
         if (tempo >= 19)
         {
             Jogador.SetActive(true);
-            texto3.SetActive(true);
+           
+            dialog2.SetActive(true);
         }
         if (tempo >= 31)
         {
-            texto3.SetActive(false);
+            dialog2.SetActive(false);
         }
         if (tempo >= 40)
         {
@@ -60,4 +68,5 @@ public class TextosCine : MonoBehaviour
         }
 
     }
+
 }

@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
         CheckP.SetActive(false);
         CheckP2.SetActive(false);
         CheckP3.SetActive(false);
+        
  
 
 
@@ -108,14 +109,14 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("Unica", 1);
        // PlayerPrefs.SetInt("kkj_Lvl2", 5);
          //PlayerPrefs.SetInt("kkj", 2);
-       // PlayerPrefs.SetInt("kkj_Lvl3", 5);
+        //PlayerPrefs.SetInt("kkj_Lvl3", 5);
         ControladorDoGame.istancia.atualizarEstrelas();
         chave = false;
         Cora1 = true;
         Cora2 = true;
         cora3 = true;
         PFv = 2;
-        Debug.Log(PlayerPrefs.GetInt("kkj"));
+       // Debug.Log(PlayerPrefs.GetInt("kkj"));
 
         NaoMoverParado = true;
         Entrada.SetActive(true);
@@ -139,6 +140,7 @@ public class Player : MonoBehaviour
          if (PlayerPrefs.GetInt("kkj") == 1)
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
+            Bloq.SetActive(true);
         }
         else if(PlayerPrefs.GetInt("kkj_Lvl2") == 3)
         {
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour
        
         else if(a==7)
         {
+            Bloq.SetActive(false);
             transform.position = new Vector3(-5.99f, -1.152f, 0);
         }
 
@@ -350,7 +353,7 @@ public class Player : MonoBehaviour
         if (PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.y) <= -10)
         {
             ControladorDoGame.istancia.AtivarGameOver();
-            Temporizador.Stop();
+            Temporizador.Morreu();
 
             coracao2.SetActive(false);
             coracao1.SetActive(false);
@@ -592,7 +595,7 @@ public class Player : MonoBehaviour
                     //Debug.Log("morreu pro boss");
                     coracao4.SetActive(false);
                     ControladorDoGame.istancia.AtivarGameOverBos();
-                    Temporizador.Stop();
+                    Temporizador.Morreu();
                     Destroy(gameObject);
 
                 }
@@ -603,7 +606,7 @@ public class Player : MonoBehaviour
                     coracao4.SetActive(false);
                     ControladorDoGame.istancia.AtivarGameOver();
 
-                    Temporizador.Stop();
+                    Temporizador.Morreu();
                     Destroy(gameObject);
                     
                 }

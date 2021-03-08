@@ -8,7 +8,7 @@ public class CamCine : MonoBehaviour
     private Transform pivor;
     public bool maxMin;
     private float xMin = -0.09f;
-    private float yMin = -0;
+    private float yMin = -2.52f;
     private float xMax = 10.53f;
     private float yMax = 0;
   
