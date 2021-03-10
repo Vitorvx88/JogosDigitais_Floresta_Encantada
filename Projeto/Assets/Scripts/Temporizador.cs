@@ -15,11 +15,13 @@ public class Temporizador : MonoBehaviour
     public static bool dead;
     private int tempoMaximo=20;
     private string aux1;
+    private static bool congelar;
 
     public GameObject pausePainel;
 
     void Start()
     {
+        congelar = true;
         stopTime = false;
         dead = false;
         this.segundos=ControladorDoGame.istancia.enviarTempoS();
@@ -35,7 +37,7 @@ public class Temporizador : MonoBehaviour
             stopTime = true;
             //ControladorDoGame.istancia.resetarPontos();
         }   
-        if (stopTime==false)
+        if (stopTime==false&&congelar)
         {
             segundos += Time.deltaTime;
             if (segundos < 9.5)
@@ -58,7 +60,7 @@ public class Temporizador : MonoBehaviour
 
 
         }
-        else
+        if(stopTime)
         {
             stopTime = true;
            
@@ -79,6 +81,10 @@ public class Temporizador : MonoBehaviour
     public static void Stop()
     {
         stopTime = true;
+    }
+    public static void PararTempo()
+    {
+        congelar= false;
     }
     public static void Morreu()
     {

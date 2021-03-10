@@ -24,6 +24,11 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(cena);
         
     }
+    public void VoltarMenu()
+    {
+        SceneManager.LoadScene("Menu");
+
+    }
     public void iniciar(string lvl)
     {
         SceneManager.LoadScene(lvl);

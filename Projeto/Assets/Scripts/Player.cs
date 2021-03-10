@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private bool agachado;
     private float movi;
     private bool chave;
+    public  bool valorY;
     private AudioSource SoundJump;
    
 
@@ -107,16 +108,24 @@ public class Player : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetInt("Unica", 1);
-       // PlayerPrefs.SetInt("kkj_Lvl2", 5);
-         //PlayerPrefs.SetInt("kkj", 2);
+
+
+
+      //  PlayerPrefs.SetInt("kkj_Lvl2", 5);
+       //  PlayerPrefs.SetInt("kkj", 2);
         //PlayerPrefs.SetInt("kkj_Lvl3", 5);
+
+
+
+
         ControladorDoGame.istancia.atualizarEstrelas();
         chave = false;
         Cora1 = true;
         Cora2 = true;
         cora3 = true;
         PFv = 2;
-       // Debug.Log(PlayerPrefs.GetInt("kkj"));
+        valorY = false;
+        // Debug.Log(PlayerPrefs.GetInt("kkj"));
 
         NaoMoverParado = true;
         Entrada.SetActive(true);
@@ -136,7 +145,7 @@ public class Player : MonoBehaviour
       
         
       
-
+        
          if (PlayerPrefs.GetInt("kkj") == 1)
         {
             transform.position = new Vector3(405.56f, -1.02f, 0);
@@ -172,9 +181,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Debug.Log(PlayerPrefs.GetInt("kkj_Lvl3"));
+       
+
         if (!pause)
         {
-            
+           
             Pular();
        
                 //Dash();
@@ -211,6 +222,7 @@ public class Player : MonoBehaviour
             Correr();
             Abaixar();
             SalvarPosicao();
+            //Debug.Log(valorY);
             Morte();
 
             // TempoDash += Time.deltaTime;
@@ -259,7 +271,12 @@ public class Player : MonoBehaviour
                     Cursor.visible = false;
                 }
             }
-
+            if (PlayerPrefs.GetFloat(cenaAtual + "Y", transform.position.x) >= 31)
+            {
+                valorY = true;
+            }
+            else
+                valorY = false;
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -672,7 +689,11 @@ public class Player : MonoBehaviour
     {
         PlayerPrefs.SetFloat(cenaAtual + "X", transform.position.x);
         PlayerPrefs.SetFloat(cenaAtual + "Y", transform.position.y);
+      
+      //  Debug.Log(valorY);
+
     }
+  
     public void ReceberKey()
     {
         this.chave = true;
@@ -687,5 +708,9 @@ public class Player : MonoBehaviour
     public bool checarKey()
     {
         return this.chave;
+    }
+    public bool pegar()
+    {
+        return valorY;
     }
 }
